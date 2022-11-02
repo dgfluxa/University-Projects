@@ -1,0 +1,41 @@
+<strong>Agregar otro usuario: </strong>
+
+<%=form_with(model: @agregar_user, url: editar_anuncio_path, local: true) do |f|%>
+<div>
+  <%= f.label :'Usuario' %>
+  <% nuevos = [] %>
+  <%usuarios = [] %>
+  <% id_grupo = Buscoclase.find(params[:id]).id_grupo %>
+  <% Buscoclase.all.each do |grupo| %>
+    <% if grupo.id_grupo == id_grupo %>
+      <% usuarios << grupo.user%>
+      <% end %>
+    <% end %>
+  <% User.all.each do |usuario| %>
+      <% unless usuarios.include?(usuario.email) %>
+        <% nuevos << usuario.email %>
+        <% end %>
+      <% end %>
+  <%= f.select :user, nuevos%>
+  <%= f.submit :"Agregar"%>
+<% end %>
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

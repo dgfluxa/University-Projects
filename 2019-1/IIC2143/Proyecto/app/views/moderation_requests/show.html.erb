@@ -1,0 +1,42 @@
+<h4  class="p-3 mb-2 bg-primary text-white">
+Solicitud de Moderación
+</h4>
+<table class="table">
+  <tbody>
+    <tr>
+    <td><b> Solicitante: <b></td>
+    <td><%= image_tag @moderation_request.user.avatar.url(:medium), class: "img img-rounded img-fluid" %></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><%=link_to  @moderation_request.user.email, profile_path(@moderation_request.user) %></td>
+    </tr>
+
+  <tr>
+  <td><b> Fecha: </b></td>
+  <td><%= @moderation_request.created_at.strftime("%F %T") %></td>
+  </tr>
+  <tr>
+  <td><b> Curso: </b></td>
+  <td><%= @moderation_request.course.name %></td>
+  </tr>
+  <tr>
+  <td><b> Descripción: </b></td>
+  <td><%= @moderation_request.description %></td>
+  </tr>
+  <tr>
+  <td><b> Certificación: </b></td>
+  <td><%= image_tag @moderation_request.photo.url(:medium)%></td>
+  </tr>
+  <tr>
+    <td>
+      <%= button_to 'Aceptar Solicitud', moderated_courses_update_path(course: @moderation_request.course, user: @moderation_request.user),
+      data: { confirm: '¿Estás seguro de Aceptar la solicitud?'}%>
+    </td>
+    <td>
+      <%= button_to 'Rechazar Solicitud', course_moderation_request_path(course_id: @moderation_request.course.id, user: @moderation_request.user), method: :delete,
+      data: { confirm: '¿Estás seguro de Rechazar la solicitud?'} %>
+    </td>
+  </tr>
+  </tbody>
+</table>

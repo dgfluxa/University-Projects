@@ -1,0 +1,16 @@
+<h1>Editar Solicitud para ser Moderador</h1>
+
+<%=form_with(model: @moderation_request, url: course_moderation_request_path, local: true) do |f|%>
+  <div>
+    <%= f.text_area :description, placeholder: "Señala las razones de la solicitud", size: '50x10', required: true%>
+  </div>
+
+  <div class="field">
+    <h6>Añade una imagen que corrobore las razones</h6>
+    <%= f.file_field :photo , required: true %>
+  </div>
+  <br>
+  <p>
+    <%= f.submit "Enviar"%>
+  </p>
+<% end %>

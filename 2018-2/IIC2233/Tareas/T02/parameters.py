@@ -1,0 +1,15 @@
+a = 0.0005     # Prob tragamonedas
+g = 36         # Cantidad de números ruleta
+o = 0.5        # Parametro para calcular la apuesta del cliente
+n = 0.1        # Aumento de la prob de irse tras hablar con tini
+k = 25         # % de aumento de prob de ganar tras hablar con tini
+p = 0.01       # Prob de que llegue una persona por tick
+t = 0.15       # Aumento de suerte por tarot
+d = 3          # Minutos de espera para conversar
+e = 15         # % de disminucion de ansiedad tras conversar
+X = 0.1        # Aumento de deshonestidad tras conversar
+v = 3          # Cantidad de veces seguidas que hace trampa
+Y = 25         # % de aumento de prob de ganar al hacer trampa
+w = 0.1        # Prob de que los dealers descubran a un cliente haciendo trampa
+mafioso = 0.1  # Prob de que exista un dealer mafioso
+delay = 10     # Delay en gui.run()

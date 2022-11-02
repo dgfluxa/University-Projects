@@ -1,0 +1,79 @@
+<h5 class="p-3 mb-2 bg-success text-white">
+  <%=form_with(model: Buscoclase.new, url: buscador_path, local: true) do |f|%>
+    Clases Particulares Buscadas
+    <%= f.text_field :course %>
+    <%= f.submit "Buscar"%>
+    <% end %>
+</h5>
+
+<h4><b> Clases Solicitadas relacionadas con: <%= @palabra %></b></h4>
+<%
+relacionados = []
+id_grupo = 0 %>
+<%
+@clases_buscadas.each do |clase|
+  if id_grupo != clase.id_grupo
+    usuario = User.find_by(email: clase.user)
+    curso = Course.find_by(sigla: clase.course)
+      if clase.user.include?(@palabra) || usuario.first_name.include?(@palabra)
+        relacionados << clase
+        elsif clase.course.include?(@palabra) || curso.name.include?(@palabra)
+        relacionados << clase
+      end
+  end
+  id_grupo = clase.id_grupo
+end
+
+%>
+<%
+demanda = []
+relacionados.each do |anuncio|
+  if anuncio.class.to_s == "Buscoclase"
+    demanda << anuncio
+  end
+end
+ %>
+<% if demanda.size > 0 %>
+  <table class="table ">
+    <tr>
+      <th scope="col">Usuario jefe</th>
+      <th scope="col">Fecha creación</th>
+      <th scope="col">Curso</th>
+      <th scope="col">Opciones</th>
+    </tr>
+
+      <tr>
+        <% demanda.each do |clase|
+        curso = Course.find_by(sigla: clase.course)
+        user = User.find_by(email: clase.user)
+        %>
+        <th> <%= link_to user.email, profile_path(user)%></th>
+        <th> <%= clase.created_at.strftime("%F %T") %> </th>
+        <th> <%=link_to curso.name, course_path(curso) %> </th>
+        <th> <%= link_to "Ver más", buscoclase_path(clase)%> </th>
+      </tr>
+      <% end %>
+    </table>
+<% else %>
+      <table class="table">
+      <tr>
+        <th> </th>
+        <th>Lo Siento, No Se Han Encontrado Resultados</th>
+        </tr>
+        <tr>
+          <th> </th>
+          <th> </th>
+          </tr>
+      </table>
+
+<% end %>
+
+  <table class="table">
+  <tr>
+    <th>
+      <a class="btn btn-primary" href="/busco_particulares" role="button">Todos los Anuncios</a>
+    </th>
+    <th><%= link_to "Solicitar Clase", new_buscoclase_path %> </th>
+    <th><%= link_to "Ofrecer Clase", new_ofertclase_path %> </th>
+    </tr>
+  </table>

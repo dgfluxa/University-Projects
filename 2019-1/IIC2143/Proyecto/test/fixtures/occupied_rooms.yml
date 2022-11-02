@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  study_room: one
+  from: 2019-06-03 15:02:37
+  to: 2019-06-03 15:02:37
+
+two:
+  study_room: two
+  from: 2019-06-03 15:02:37
+  to: 2019-06-03 15:02:37

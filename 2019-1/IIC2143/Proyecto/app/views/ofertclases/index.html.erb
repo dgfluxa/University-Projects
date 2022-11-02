@@ -1,0 +1,18 @@
+<h1>Clases Particulares</h1>
+<table>
+  <tr>
+  <% @clases_ofrecidas.each do |clase| %>
+  <div>
+    <td><strong>El usuario <%= clase.user%> ofrece clase del curso:  </strong>
+    <td><%= clase.course %></td>
+    <td>
+      <%= link_to "Ver Más", ofertclase_path(clase) %>
+      <%= link_to "Eliminar", clase, method: :delete, data: {confirm:"¿Estas seguro de eliminar este anuncio?"} %>
+    </td>
+  </div>
+  </tr>
+</table>
+  <% end %>
+<div class="field">
+  <%= render "ofertclases/form0" %>
+</div>

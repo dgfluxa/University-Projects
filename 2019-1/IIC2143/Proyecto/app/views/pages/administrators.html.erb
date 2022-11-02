@@ -1,0 +1,19 @@
+<h1>Listado de Administradores</h1>
+<table class="table table-striped">
+  <tr>
+    <thead>
+    <th>Nombre Completo</th>
+    <th>Email</th>
+    <th colspan="1"></th>
+    </thead>
+  </tr>
+  <% @users.each do |user| %>
+    <% if user.admin and user != current_user %>
+    <tr>
+      <td><%= user.first_name %> <%= user.last_name %></td>
+      <td><%= link_to user.email, profile_path(user)%></td>
+      <td><%= link_to "Ver Más", profile_path(user) %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>

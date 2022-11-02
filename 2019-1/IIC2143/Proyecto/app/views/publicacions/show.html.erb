@@ -1,0 +1,289 @@
+<h4  class="p-3 mb-2 bg-success text-white">
+Publicación: <%= @publicacion.titulo%>
+</h4>
+<table class="table">
+  <tbody>
+    <tr>
+    <td><b> Autor: <b></td>
+    <td><%= image_tag @publicacion.user.avatar.url(:medium), class: "img img-rounded img-fluid" %></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><%=link_to  @publicacion.user.email, profile_path(@publicacion.user) %></td>
+    </tr>
+
+  <tr>
+  <td><b> Creado: </b></td>
+  <td><%= @publicacion.created_at.strftime("%F %T") %></td>
+  </tr>
+  <tr>
+  <td><b> Curso: </b></td>
+  <td><%= @publicacion.course.name %></td>
+  </tr>
+  <tr>
+  <td><b> Descripcion: </b></td>
+  <td><%= @publicacion.description %></td>
+  </tr>
+  <tr>
+  <td><b> Contenido: </b></td>
+  <td>
+    <div class="card border-info mb-3">
+      <div class="card-body text-info">
+        <h5 class="card-text text-dark">
+            <%= @publicacion.contenido %>
+        </h5>
+      </div>
+    </div>
+  </td>
+  </tr>
+  <%num_like = 0 %>
+  <%num_dislike = 0 %>
+  </tbody>
+</table>
+    <% Like.where(publicacion_id: @publicacion.id).each do |like| %>
+      <% if like.like == 1 %>
+      <% num_like = num_like + 1 %>
+      <% else %>
+        <%num_dislike = num_dislike + 1%>
+      <%end%>
+    <% end %>
+<div class="card-body">
+  <div class="row justify-content-md-center">
+    <div class="col-md-2">
+      <div class="card-group">
+        <div class="card border-success mb-3" style="max-width: 10rem;">
+          <div class="card-body text-info">
+            <p class="card-text">
+                <%= num_like %> <%= num_like <= 0 ? ' Like' : ' Likes'%>
+            </p>
+          </div>
+        </div>
+        <div class="card border-info mb-3" style="max-width: 10rem;">
+          <div class="card-body text-info">
+            <p class="card-text">
+                <%= num_dislike %><%= num_dislike <= 1 ? '  Dislike' : '  Dislikes'%>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<% pre_like = Like.find_by(user_id: current_user, publicacion: @publicacion)%>
+<% if pre_like %>
+  <% if pre_like.like==1 %>
+    <div class="col-md-10" style="max-width: 15rem;">
+      <p class="text-left">
+    <%= button_to course_publicacion_like_path(@course, @publicacion, pre_like), method: :delete, class: "float-right btn btn-outline-primary ml-2" do%>
+      <%= octicon "thumbsdown", height: 40%>
+      <% end %>
+      <%= button_to course_publicacion_likes_path(@course, @publicacion, pre_like), disabled: true, class: "float-right btn text-white btn-danger" do %>
+      <%= octicon "thumbsup", height: 40%>
+      <% end %>
+      </p>
+    </div>
+    <% else %>
+    <div class="col-md-10" style="max-width: 15rem;">
+      <p class="text-left">
+    <%= button_to course_publicacion_like_path(@course, @publicacion, pre_like), disabled: true, class: "float-right btn text-white btn-danger" do %>
+      <%= octicon "thumbsdown", height: 40%>
+    <% end %>
+    <%= button_to course_publicacion_likes_path(@course, @publicacion, pre_like), method: :post, class: "float-right btn btn-outline-primary ml-2" do%>
+      <%= octicon "thumbsup", height: 40%>
+      <% end %>
+    </p>
+    </div>
+
+    <% end %>
+<% else %>
+<div class="col-md-10" style="max-width: 15rem;">
+  <p class="text-left">
+    <%= button_to course_publicacion_like_path(@course, @publicacion), method: :delete, class: "float-right btn btn-outline-primary ml-2" do %>
+    <%= octicon "thumbsdown", height: 40%>
+    <% end %>
+    <%= button_to course_publicacion_likes_path(@course, @publicacion), method: :post, class: "float-right btn btn-outline-primary ml-2" do %>
+    <%= octicon "thumbsup", height: 40%>
+    <% end %>
+  </p>
+  </div>
+<% end %>
+
+    <div class='col'>
+    <%= link_to favorite_publication_text, favorite_publications_update_path(publicacion: @publicacion), id:"favorite_publication_link", remote: true %>
+    </div>
+    <% if can? :manage, @publicacion %>
+      <div class='col'>
+      <%= link_to "Editar", edit_course_publicacion_path(@publicacion.course, @publicacion) %>
+      </div>
+      <div class='col'>
+      <%= link_to "Eliminar", course_publicacion_path(@course, @publicacion), method: :delete, data: {confirm:"¿Estas seguro de eliminar esta publicación?"}  %>
+      </div>
+  </div>
+</div>
+</div>
+
+<% end %>
+
+</div>
+</div>
+
+<br>
+
+
+<div class="container">
+  <h5  class="p-3 mb-2 bg-success text-white text-center">
+    Comentarios
+  </h5>
+<% if @publicacion.publicacion_comments.size > 0 %>
+
+    <%
+    comentarios = []
+    @publicacion.publicacion_comments.each do |comentario|
+      comentarios << comentario
+    end
+    orden_llegada = []
+      while comentarios.size != 0
+        mayor = comentarios[0]
+        comentarios.each do |comentario|
+          if comentario.created_at > mayor.created_at
+            mayor = comentario
+            end
+          end
+          comentarios.delete(mayor)
+          orden_llegada << mayor
+      end
+    %>
+  <% orden_llegada.each do |comment| %>
+
+        <div class="card-body">
+          <div class="row">
+              <div class="col-md-2">
+                  <p> <%= image_tag comment.user.avatar.url(:medium), class: "img img-rounded img-fluid" %> </p>
+                  <p class="text-secondary text-center"><%= comment.created_at.strftime("%F %T") %></p>
+              </div>
+              <div class="col-md-10">
+                  <p>
+                      <%= link_to comment.user.email, profile_path(comment.user) %>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+
+                 </p>
+                 <div class="clearfix">
+                  <p><%= comment.body %></p>
+                </div>
+
+
+        <% if can? :manage, comment%>
+          <% link_to "Editar", edit_course_publicacion_publicacion_comment_path(@course, @publicacion, comment) %>
+          <% link_to 'Eliminar', course_publicacion_publicacion_comment_path(@course, @publicacion, comment),
+                    method: :delete,
+                    data: { confirm: '¿Estás seguro de eliminar este comentario?'} %>
+
+        <% end %>
+
+      <%comentarios_like = 0 %>
+      <%comentarios_dislike = 0 %>
+        <% LikeComent.where(publicacion_comment_id:comment.id).each do |like| %>
+          <% if like.like == 1 %>
+            <% comentarios_like = comentarios_like + 1 %>
+            <% else %>
+            <%comentarios_dislike = comentarios_dislike + 1%>
+            <% end %>
+        <% end %>
+        <div class="card-group">
+          <div class="card border-success mb-3" style="max-width: 10rem;">
+              <div class="card-body text-info">
+                <p class="card-text">
+                    <%= comentarios_like %> <%= comentarios_like <= 1 ? ' Like' : ' Likes'%>
+                </p>
+              </div>
+          </div>
+          <div class="card border-info mb-3" style="max-width: 10rem;">
+              <div class="card-body text-info">
+                <p class="card-text">
+                    <%= comentarios_dislike %> <%= comentarios_dislike <= 1 ? '  Dislike' : '  Dislikes'%>
+                </p>
+              </div>
+          </div>
+          </div>
+          <% if can? :manage, comment%>
+          <div>
+            <%= link_to "Editar", edit_course_publicacion_publicacion_comment_path(@course, @publicacion, comment) %>
+            <%= link_to 'Eliminar', course_publicacion_publicacion_comment_path(@course, @publicacion, comment),
+                      method: :delete,
+                      data: { confirm: '¿Estás seguro de eliminar este comentario?'} %>
+
+          <% end %>
+          </div>
+                <% pre_like = LikeComent.find_by(user: current_user, publicacion_comment_id: comment.id)%>
+                <div>
+                <% if pre_like %>
+                  <% if pre_like.like==1 %>
+
+                 <p>
+                  <%= button_to course_publicacion_publicacion_comment_like_coment_path(@course, @publicacion,comment, pre_like), method: :delete, class: "float-right btn btn-outline-primary ml-2" do %>
+                    <%= octicon "thumbsdown"%>
+                    <% end %>
+
+                  <%= button_to course_publicacion_publicacion_comment_like_coments_path(@course, @publicacion,comment, pre_like), disabled: true, class: "float-right btn text-white btn-danger" do %>
+                    <%= octicon "thumbsup"%>
+                    <% end %>
+                </p>
+
+                  <% else %>
+                    <p>
+                      <%= button_to course_publicacion_publicacion_comment_like_coment_path(@course, @publicacion,comment, pre_like), disabled: true, class: "float-right btn text-white btn-danger" do %>
+                          <%= octicon "thumbsdown"%>
+                        <% end %>
+
+                      <%= button_to course_publicacion_publicacion_comment_like_coments_path(@course, @publicacion,comment, pre_like), method: :post, class: "float-right btn btn-outline-primary ml-2" do%>
+                        <%= octicon "thumbsup"%>
+                        <% end %>
+                    </p>
+                  <% end %>
+                <% else %>
+
+                  <p><%= button_to course_publicacion_publicacion_comment_like_coment_path(@course, @publicacion,comment), method: :delete, class: "float-right btn btn-outline-primary ml-2" do %>
+                    <%= octicon "thumbsdown"%>
+                    <% end %>
+                  <%= button_to course_publicacion_publicacion_comment_like_coments_path(@course, @publicacion,comment), method: :post, class: "float-right btn btn-outline-primary ml-2" do%>
+                    <%= octicon "thumbsup"%>
+                    <% end %>
+                  </p>
+                <% end %>
+
+            </div>
+          </div>
+          </div>
+          <% end %>
+          </div>
+    <% end %>
+<div class='container'
+          <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseValorar" aria-expanded="false" aria-controls="collapseValorar">
+              Realiza Un Comentario
+            </button>
+          </p>
+          <div class="collapse" id="collapseValorar">
+            <div>
+            <%=form_with(model: PublicacionComment.new, url: course_publicacion_publicacion_comment_path(@course, @publicacion), local: true) do |f|%>
+              <div>
+                <p><%= f.text_area :body, :rows => 5, :cols => 120 %></p>
+                <p><%= f.submit "Comentar" %></p>
+              </div>
+              <% end %>
+              </div>
+            </div>
+</div>
+
+<div>
+
+<table class="table">
+  <tr>
+    <td>
+    <%= link_to "Volver al Curso", course_path(@publicacion.course)%>
+
+    </td>
+  </tr>
+</table>

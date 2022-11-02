@@ -1,0 +1,39 @@
+<h1>Clases Particulares</h1>
+<table>
+  <tr>
+  <td><strong><h3> Clases Solicitadas</h3></strong></td>
+  <td> </td>
+  <td> </td>
+  <td><strong><h3> Anuncios relacionados</h3></strong></td>
+  </tr>
+  <% id_grupo = 0 %>
+  <% @cursos_buscados.each do |clase| %>
+  <tr>
+  <div>
+    <% profesores = [] %>
+    <% if id_grupo != clase.id_grupo %>
+      <td><strong> Un grupo busca clases para: </strong><%= clase.course %></td>
+      <td>
+        <%= link_to "Ver Más", buscoclase_path(clase) %>
+        <%= link_to "Eliminar", clase, method: :delete, data: {confirm:"¿Estas seguro de eliminar este anuncio?"} %>
+      </td>
+      <td> </td>
+
+      <% @clases_ofrecidas.each do |profesor| %>
+        <% if profesor.course == clase.course%>
+          <% profesores.push(profesor.user) %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if profesores != [] %>
+      <td><strong><%= profesores.join(", ") %> ofrecen clases de este curso</strong></td>
+      <td><%= link_to "ir a anuncios", ofertclases_path %></td>
+    <% end %>
+  </div>
+  </tr>
+  <% id_grupo = clase.id_grupo %>
+  <% end %>
+</table>
+<div class="field">
+  <%= render "buscoclases/form0" %>
+</div>

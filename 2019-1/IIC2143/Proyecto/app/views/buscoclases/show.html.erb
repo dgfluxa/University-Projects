@@ -1,0 +1,73 @@
+<%n = 0%>
+<% users = ""%>
+<% lista_users = [] %>
+<h4 class="p-3 mb-2 bg-success text-white" >Se necesita profesor</h4>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Atributos</th>
+      <th scope="col">Datos</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong> Sigla Curso: </strong></td>
+    <td><%=  @buscoclases.course %></td>
+  </tr>
+  <tr>
+    <td><strong> Nombre curso: </strong></td>
+    <td><%= Course.find_by(sigla:@buscoclases.course).name %></td>
+  </tr>
+  <tr>
+    <td><strong> Tiempo aproximado: </strong></td>
+    <td><%=  @buscoclases.time %> minutos</td>
+  </tr>
+  <tr>
+  <td><strong> Usuarios que desean la clase:  </strong></td>
+  <% @anuncios.where("id_grupo = ?", @id_group).each do |clase| %>
+    <% lista_users.push(clase.user) %>
+    <% if users != "" %>
+      <% users = users + ", " + clase.user%>
+    <% else %>
+      <% user = User.find_by(email:clase.user)%>
+      <td><%=link_to clase.user, profile_path(user) %></td>
+    <% end %>
+    <%end%>
+    </tr>
+  </tbody>
+
+</table>
+      <% if lista_users.include?(current_user.email) %>
+      <h4 class="p-3 mb-2 bg-success text-white" >Opciones de tu anuncio</h4>
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Agregar usuario</th>
+          <th scope="col">Modificar Atributos</th>
+        </tr>
+        </thead>
+      <tbody>
+      <td class="field">
+        <%= render "buscoclases/agregaruser" %>
+      </td>
+      <td class="field">
+        <%= render "buscoclases/agregaruser0" %>
+      </td>
+      </tbody>
+      </table>
+      <% end %>
+      <% if current_user.email == @buscoclases.user %>
+        <%= link_to "Eliminar", ofertclase_path, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %>
+      <% elsif current_user.moderated_courses != [] %>
+        <% current_user.moderated_courses.each do |moderated| %>
+          <% if @buscoclases.course == moderated.course.sigla %>
+            <%= link_to "Eliminar", @buscoclases, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %>
+          <%end%>
+        <%end%>
+      <%end%>
+<div>
+  <%= link_to "Volver a Anuncios",clases_particulares_path %>

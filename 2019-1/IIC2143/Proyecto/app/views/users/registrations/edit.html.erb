@@ -1,0 +1,73 @@
+
+<div class="container">
+  <div class="row justify-content-md-center">
+      <h1>Editar Usuario</h1>
+  </div>
+  <div class="row justify-content-md-center">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+          <b><%=f.label "Foto de perfil:"%></b><br>
+          <%= image_tag @user.avatar.url(:medium) %><br>
+          <%= f.file_field :avatar %>
+      </div>
+      <br>
+      <div class="field">
+        <b><%= f.label :'Nombre' %></b><br />
+        <%= f.text_field :first_name, required: true%>
+      </div>
+      <br>
+      <div class="field">
+        <b><%= f.label :'Apellido' %></b><br />
+        <%= f.text_field :last_name, required: true%>
+      </div>
+      <br>
+      <div class="field">
+        <b><%= f.label :Email %></b><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+      <br>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field">
+        <b><%= f.label :'Contrseña' %></b> <i>(Dejar en blanco si no desea cambiarlo)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= @minimum_password_length %> caractéres mínimos</em>
+        <% end %>
+      </div>
+      <br>
+
+      <div class="field">
+        <b><%= f.label :'Confirmar Contraseña' %></b><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+      <br>
+
+      <div class="field">
+        <b><%= f.label :'Contraseña Actual' %></b> <i>(Ingresa tu contraseña actual para confirmar)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password" %>
+      </div>
+      <br>
+
+      <div class="actions">
+        <%= f.submit "Actualizar" %>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <div class="row justify-content-md-center">
+    <h3>¿Deseas cancelar tu cuenta?</h3>
+  </div>
+  <div class="row justify-content-md-center">
+    <p><%= button_to "Cancelar cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  </div>
+  <div class="row justify-content-md-center">
+    <%= link_to "Volver", :back %>
+  </div>
+</div>

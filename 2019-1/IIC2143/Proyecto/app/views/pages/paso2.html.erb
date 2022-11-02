@@ -1,0 +1,32 @@
+<h1>Crear Grupo</h1>
+<div>
+<p><b>Curso:</b> <%= @course.sigla %> </p>
+</div>
+<div>
+<table class="table table-striped">
+  <tr>
+    <thead>
+    <th>Nombre</th>
+    <th>Ubicación</th>
+    <th colspan="1"></th>
+    </thead>
+  </tr>
+  <% @study_rooms.each do |room| %>
+    <% if OccupiedRoom.where(study_room: room) != [] and DateTime.now >= OccupiedRoom.where(study_room: room)[0].to%>
+      <% ocupacion = OccupiedRoom.where(study_room: room)[0] %>
+      <% ocupacion.destroy %>
+    <% end %>
+    <tr>
+      <td><%= room.name %></td>
+      <td><%= room.ubication %></td>
+      <td>
+        <% if OccupiedRoom.where(study_room: room) != [] %>
+          <p class='text-danger'> Sala Ocupada </p>
+        <% else %>
+          <%= link_to "Seleccionar", paso_final_path(@course, room) %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+</div>

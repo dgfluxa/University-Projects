@@ -1,0 +1,61 @@
+<h3>Ofrece tus clases particulares</h3>
+
+<%=form_with(model: @ofertclases, url: ofrecer_path, local: true) do |f|%>
+
+<div>
+  <%= f.label :'Precio' %>
+  <%= f.number_field :precio ,placeholder: "valor por bloque", required: true%>
+</div>
+<div>
+  <%= f.label :'Bloque de tiempo' %>
+  <%= f.number_field :time ,placeholder: "en minutos", required: true%>
+</div>
+<div >
+    <%= f.label :'Curso' %>
+    <% cursos = [] %>
+    <% current_user.professor_courses.each do |pcourse| %>
+    <% cursos.push(pcourse.course.sigla) %>
+    <% end %>
+    <%= f.select :course, cursos%>
+
+</div>
+<div>
+    <%=f.label :'Sala' %>
+    <%salas = [] %>
+    <%@rooms.each do |sala| %>
+    <% salas.push(sala.name) %>
+    <% end %>
+    <%= f.select :sala, salas %>
+</div>
+<div>
+  <%= f.label :'Descripción: '%>
+  <div>
+  <%= f.text_area :description, placeholder: "Agrega una descripcion tuya", required: true%>
+  </div>
+
+
+</div>
+<div>
+  <%= f.submit :"Ofrecer clase"%>
+</div>
+<% end %>
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

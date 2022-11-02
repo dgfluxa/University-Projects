@@ -1,0 +1,11 @@
+<% @publicaciones.each do  |publicacion| %>
+<table>
+  <tr>
+  <%= publicacion.titulo %>
+  <%= publicacion.course.name %>
+  <% if can? :manage, Publicacion%>
+    <%= link_to "Eliminar",  publicacion, method: :delete, data: {confirm:"¿Estas seguro de eliminar este anuncio?"} %>
+  <% end %>
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,11 @@
+<h1 class="p-3 mb-2 bg-success text-white" >Editar Ocupación</h1>
+
+<%= form_with(model: @occupied_room, url: study_room_occupied_room_path, :method => :PATCH  ,local: true) do |f| %>
+  <div>
+    <p><%= f.label :'Desde: ' %>
+      <%= f.datetime_select :from%></p>
+    <p><%= f.label :'Hasta: ' %>
+      <%= f.datetime_select :to%></p>
+    <p><%= f.submit "Editar" %></p>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  ubication: MyString
+  availability_score: 1
+  noise_score: 1
+  plug_score: 1
+
+two:
+  name: MyString
+  ubication: MyString
+  availability_score: 1
+  noise_score: 1
+  plug_score: 1

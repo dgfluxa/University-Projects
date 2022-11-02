@@ -1,0 +1,9 @@
+<h1 class="p-3 mb-2 bg-success text-white" >Editar Comentario</h1>
+
+<%= form_with(model: @study_room_comment, url: study_room_study_room_comment_path, :method => :PATCH  ,local: true) do |f| %>
+<p>
+    <%= f.text_area :body, :rows => 10 %>
+
+    <%= f.submit "Guardar"%>
+  </p>
+<% end %>

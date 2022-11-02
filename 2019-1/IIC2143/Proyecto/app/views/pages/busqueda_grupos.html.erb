@@ -1,0 +1,88 @@
+<h4 class="p-3 mb-2 bg-success text-white" >
+    <%=form_with(model: Buscoclase.new, url: buscador_grupo_path, local: true) do |f|%>
+    Grupos de Estudio <%= f.text_field :course %>
+    <%= f.submit "Buscar"%>
+  <% end %>
+</h4>
+<%
+relacionados = []
+@study_groups.each do |grupo|
+    sala = StudyRoom.find_by(id: grupo.study_room_id)
+    grupo.subscribed_users.each do |user|
+      if user.user.email.include?(@palabra) || user.user.first_name.include?(@palabra)
+        if not relacionados.include?(grupo)
+          relacionados << grupo
+          end
+      elsif user.user.last_name.include?(@palabra)
+        if not relacionados.include?(grupo)
+          relacionados << grupo
+        end
+      end
+    end
+    if sala.name.include?(@palabra)
+      if not relacionados.include?(grupo)
+        relacionados << grupo
+      end
+    elsif grupo.course.name.include?(@palabra) || grupo.course.sigla.include?(@palabra)
+      if not relacionados.include?(grupo)
+        relacionados << grupo
+      end
+    end
+  end
+%>
+
+<h4><b> Grupos de Estudio relacionados con <%= @palabra %>: </b></h4>
+  </tr>
+  <% if relacionados.size > 0 %>
+  <table class="table table-striped">
+    <tr>
+      <thead>
+      <th>Curso</th>
+      <th>Sala</th>
+      <th>Inicio</th>
+      <th>Término</th>
+      <th>Opciones</th>
+      <th colspan="2"></th>
+      </thead>
+    <% relacionados.each do |study_group| %>
+      <tr>
+        <td><%= link_to study_group.course.name, course_path(study_group.course) %></td>
+        <td><%= study_group.study_room.name %></td>
+        <td><%= study_group.created_at.strftime("%F %T")%></td>
+        <%hora = study_group.created_at + study_group.duration.minutes %>
+        <td><%= hora.strftime("%F %T") %></td>
+        <td><%= link_to "Ver Más", study_group_path(study_group) %></td>
+        <td><% if study_group.subscribed_users != [] and current_user == study_group.subscribed_users[0].user %>
+              <%= link_to "Eliminar", study_group, method: :delete, data: {confirm:"¿Estas seguro de eliminar este Grupo de Estudio?"} %>
+              <% end %></td>
+            </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <table class="table">
+    <tr>
+      <th> </th>
+      <th>Lo Siento, No Se Han Encontrado Resultados</th>
+      </tr>
+      <tr>
+        <th> </th>
+        <th> </th>
+        </tr>
+    </table>
+
+  <% end %>
+  <table class="table">
+  <tr>
+    <th>
+      <a class="btn btn-primary" href="/study_groups" role="button">Todos Los Grupos</a>
+    </th>
+    <th><%=
+    link_to "Nuevo Grupo de Estudio", paso_path
+    %>
+    </th>
+    <th><%= link_to "Solicitar Clase", new_buscoclase_path %> </th>
+    <th><%= link_to "Ofrecer Clase", new_ofertclase_path %> </th>
+
+    </tr>
+
+  </table>

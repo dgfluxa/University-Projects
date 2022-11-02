@@ -1,0 +1,60 @@
+<h4 class="p-3 mb-2 bg-success text-white">
+  <%=form_with(model: Buscoclase.new, url: buscador_grupo_path, local: true) do |f|%>
+    Grupos de Estudio
+    <%= f.text_field :course %>
+    <%= f.submit "Buscar"%>
+    <% end %>
+</h4>
+
+<table class="table table-striped">
+  <tr>
+    <thead>
+    <th>Curso</th>
+    <th>Sala</th>
+    <th>Inicio</th>
+    <th>Término</th>
+    <th colspan="2"></th>
+    </thead>
+  </tr>
+  <%
+  grupos = []
+  StudyGroup.all.each do |grupo|
+    grupos << grupo
+    end
+  ordenados = []
+    while grupos.size != 0
+      mayor = grupos[0]
+      grupos.each do |anuncio| #grupo, oc, bc
+        if anuncio.created_at > mayor.created_at
+          mayor = anuncio
+          end
+        end
+        grupos.delete(mayor)
+        ordenados << mayor
+    end
+  %>
+  <% ordenados.each do |study_group| %>
+    <tr>
+      <td><%= link_to study_group.course.name, course_path(study_group.course) %></td>
+      <td><%= study_group.study_room.name %></td>
+      <td><%= study_group.created_at.strftime("%F %T")%></td>
+      <%hora = study_group.created_at + study_group.duration.minutes %>
+      <td><%= hora.strftime("%F %T") %></td>
+      <td><%= link_to "Ver Más", study_group_path(study_group) %></td>
+      <td><% if can? :manage, study_group %>
+            <%= link_to "Eliminar", study_group, method: :delete, data: {confirm:"¿Estas seguro de eliminar este Grupo de Estudio?"} %>
+          <% end %></td>
+    </tr>
+  <% end %>
+</table>
+
+<table class="table" >
+  <tbody>
+  <tr>
+    <th><%=link_to "Nuevo Grupo de Estudio", paso_path%>
+    </th>
+    <th><%= link_to "Solicitar Clase", new_buscoclase_path %> </th>
+    <th><%= link_to "Ofrecer Clase", new_ofertclase_path %> </th>
+    </tr>
+    </tbody>
+  </table>

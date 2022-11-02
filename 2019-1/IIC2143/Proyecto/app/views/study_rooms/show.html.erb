@@ -1,0 +1,111 @@
+<div class='container'>
+  <div class="row justify-content-md-center">
+    <h1><b><%= @study_rooms.name %></b></h1>
+  </div>
+  <div>
+  <h5><strong>Ubicación: </strong></h5>
+  </div>
+  <%= @study_rooms.ubication %>
+  <div>
+  <% if @study_rooms.study_room_valorations.size > 0 %>
+    <div>
+    <h5><strong> Puntuación de Disponibilidad: </strong></h5>
+    </div>
+    <%= calculate_availability(@study_rooms) %>
+    <div>
+    <h5><strong> Puntuación de Ruido: </strong></h5>
+    </div>
+    <%= calculate_noise(@study_rooms) %>
+    <div>
+    <h5><strong> Puntuación de Enchufes: </strong></h5>
+    </div>
+    <div>
+    <%= calculate_plugs(@study_rooms) %>
+    </div>
+    <div>
+    <p><b> Numero de valoraciones:  </b><%= @study_rooms.study_room_valorations.size %></p>
+    </div>
+  <% else %>
+    <div>
+      <p><strong> Aún no existen valoraciones </strong></p>
+    </div>
+  <% end %>
+
+    <% if OccupiedRoom.where(study_room: @study_rooms) != [] and DateTime.now < OccupiedRoom.where(study_room: @study_rooms)[0].to%>
+      <% ocupacion = OccupiedRoom.where(study_room: @study_rooms)[0] %>
+      <p class="text-danger"><strong> ATENCIÓN: Esta sala se encontrará ocupada desde <%= ocupacion.created_at %> hasta <%= ocupacion.to %></strong></p>
+    <% elsif OccupiedRoom.where(study_room: @study_rooms) != []%>
+      <% OccupiedRoom.where(study_room: @study_rooms)[0].destroy %>
+    <% end %>
+    <% #Si se introduce una fecha de término anterior a la fecha actual se eliminará automaticamente%>
+
+  </div>
+  <div>
+  <% if can? :edit, @study_rooms %><%= link_to "Editar Sala", edit_camp_study_room_path(@study_rooms.camp, @study_rooms) %><%end%>
+  </div>
+  <div>
+  <% if can? :destroy, @study_rooms %><%= link_to 'Eliminar Sala', camp_study_room_path(@study_rooms.camp, @study_rooms),
+                method: :delete,
+                data: { confirm: '¿Estás seguro de eliminar esta Sala de Estudio?'} %><%end%>
+  </div>
+
+  <div class='row justify-content-md-center'>
+    <div class='col-md-auto'>
+      <%= render 'study_rooms/study_groups' %>
+    </div>
+    <div class='col-md-auto'>
+      <%= render 'study_rooms/valoration' %>
+    </div>
+  </div>
+  <div class='row justify-content-md-center'>
+    <div class='col-md-auto'>
+      <% if can? :create, OccupiedRoom %>
+        <%= render 'study_rooms/occupied' %>
+      <% end %>
+    </div>
+  </div>
+
+
+
+
+
+  <% if @study_rooms.study_room_comments.size > 0 %>
+    <h1>Comentarios</h1>
+    <div class='container'>
+    <% @study_rooms.study_room_comments.each do |comment| %>
+    <div class="card-body">
+      <div class="row">
+          <div class="col-md-2">
+              <p> <%= image_tag comment.user.avatar.url(:medium), class: "img img-rounded img-fluid" %> </p>
+              <p class="text-secondary text-center"><%= comment.created_at.strftime("%F %T") %></p>
+          </div>
+      <div class="col-md-10">
+        <p>
+        <%= link_to comment.user.email, profile_path(comment.user) %>
+        </p>
+        <div class="clearfix">
+         <p><%= comment.body %></p>
+       </div>
+      <% if can? :manage, comment%>
+        <%= link_to "Editar", edit_study_room_study_room_comment_path(@study_rooms, comment) %>
+        <%= link_to 'Eliminar', study_room_study_room_comment_path(@study_rooms, comment),
+                  method: :delete,
+                  data: { confirm: '¿Estás seguro de eliminar este comentario?'} %>
+      <% end %>
+      </div>
+      </div>
+    </div>
+
+    <% end %>
+    </div>
+  <% end %>
+
+  <h2>Realiza un comentario</h2>
+
+  <%= form_for [@study_rooms, StudyRoomComment.new] do |f| %>
+  <div>
+    <p><%= f.text_area :body, :rows => 5, :cols => 120 %></p>
+    <p><%= f.submit "Comentar" %></p>
+  </div>
+  <% end %>
+</div>

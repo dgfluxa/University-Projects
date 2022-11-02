@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Proyecto G10</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">ESTUD10</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/study_rooms">Salas de Estudio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/courses">Cursos </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/camps">Campus </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Eventos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/study_groups">Grupos de Estudio</a>
+              <a class="dropdown-item" href="/clases_particulares">Clases Particulares Ofrecidas</a>
+              <a class="dropdown-item" href="/busco_particulares">Clases Particulares Solicitadas</a>
+            </div>
+          </li>
+          <% if user_signed_in? and current_user.admin %>
+            <li class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ADMIN
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/estadisticas">Estadísticas</a>
+                <a class="dropdown-item" href="/requests">Responder Solicitudes</a>
+                <a class="dropdown-item" href="/moderators">Moderadores</a>
+                <a class="dropdown-item" href="/administrators">Administradores</a>
+              </div>
+            </li>
+          <% elsif user_signed_in? and current_user.moderated_courses != [] %>
+            <li class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                MODERADOR
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/requests">Responder Solicitudes</a>
+                <a class="dropdown-item" href="/moderators">Moderadores</a>
+                <a class="dropdown-item" href="/administrators">Administradores</a>
+              </div>
+            </li>
+          <% end %>
+
+        </ul>
+        <ul class="navbar-nav my-2 my-lg-0">
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <strong><%= current_user.email %></strong>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href= <%=profile_path(current_user)%> > Perfil </a>
+                <a class="dropdown-item" href="/imbox"> Mensajería </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" data-method='delete', href=<%= destroy_user_session_path%>> Cerrar sesión </a>
+              </div>
+            </li>
+          <% else %>
+            <%= link_to "Regístrate", new_user_registration_path, :class => "btn btn-outline-success" %>
+            <%= link_to 'Iniciar sesión', new_user_session_path, :class => "btn btn-outline-secondary" %>
+          <% end %>
+        <ul>
+      </div>
+    </nav>
+
+    <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

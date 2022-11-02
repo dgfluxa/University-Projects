@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: MyString
+  course: MyString
+  time: 1
+  id_grupo: 1
+
+two:
+  user: MyString
+  course: MyString
+  time: 1
+  id_grupo: 1

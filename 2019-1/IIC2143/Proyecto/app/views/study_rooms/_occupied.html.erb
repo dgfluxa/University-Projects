@@ -1,0 +1,38 @@
+<br>
+<% if OccupiedRoom.where(study_room: @study_rooms) == [] %>
+  <p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOcupada" aria-expanded="false" aria-controls="collapseOcupada">
+      Marcar como Ocupada
+    </button>
+  </p>
+  <div class="collapse" id="collapseOcupada">
+    <div>
+      <%= form_for [@study_rooms, OccupiedRoom.new] do |f| %>
+        <div>
+        <p><%= f.label :'Desde: ' %>
+          <%= f.datetime_select :from%></p>
+        <p><%= f.label :'Hasta: ' %>
+          <%= f.datetime_select :to%></p>
+        <p><%= f.submit "Enviar" %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <% ocupacion = OccupiedRoom.where(study_room: @study_rooms)[0] %>
+  <p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseOcupada" aria-expanded="false" aria-controls="collapseOcupada">
+      Opciones Ocupación de Sala
+    </button>
+  </p>
+  <div class="collapse" id="collapseOcupada">
+    <div>
+    <%= link_to "Editar Ocupación", edit_study_room_occupied_room_path(@study_rooms, ocupacion) %>
+    </div>
+    <div>
+    <%= link_to 'Eliminar Ocupación', study_room_occupied_room_path(@study_rooms, ocupacion),
+                  method: :delete,
+                  data: { confirm: '¿Estás seguro de desmarcar esta sala como ocupada?'} %>
+    </div>
+  </div>
+<% end %>

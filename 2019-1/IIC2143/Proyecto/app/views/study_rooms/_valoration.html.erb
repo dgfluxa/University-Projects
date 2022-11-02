@@ -1,0 +1,48 @@
+<br>
+<% if StudyRoomValoration.where(study_room: @study_rooms, user: current_user) == [] %>
+  <p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseValorar" aria-expanded="false" aria-controls="collapseValorar">
+      Dejar Valoración
+    </button>
+  </p>
+  <div class="collapse" id="collapseValorar">
+    <div>
+      <%= form_for [@study_rooms, StudyRoomValoration.new] do |f| %>
+        <div>
+        <p><%= f.label :'Puntaje de disponibilidad' %>
+          <%= f.number_field :availability, min: 1, max: 10, required: true%></p>
+        <p><%= f.label :'Puntaje de ruido' %>
+          <%= f.number_field :noise, min: 1, max: 10, required: true%></p>
+        <p><%= f.label :'Puntaje de enchufes' %>
+          <%= f.number_field :plugs, min: 1, max: 10, required: true%></p>
+        <p><%= f.submit "Valorar" %></p>
+      </div>
+      <% end %>
+    </div>
+<% else %>
+  <% valoracion = StudyRoomValoration.where(study_room: @study_rooms, user: current_user)[0] %>
+  <p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseValorar" aria-expanded="false" aria-controls="collapseValorar">
+      Ver Valoración
+    </button>
+  </p>
+  <div class="collapse" id="collapseValorar">
+    <div>
+      <p>Puntaje de disponibilidad:
+        <%= valoracion.availability %></p>
+      <p>Puntaje de ruido:
+        <%= valoracion.noise %></p>
+      <p>Puntaje de enchufes:
+        <%= valoracion.plugs %></p>
+    </div>
+    <div>
+    <%= link_to "Editar Valoración", edit_study_room_study_room_valoration_path(@study_rooms, valoracion) %>
+    </div>
+    <div>
+    <%= link_to 'Eliminar Valoración', study_room_study_room_valoration_path(@study_rooms, valoracion),
+                  method: :delete,
+                  data: { confirm: '¿Estás seguro de eliminar tu valoración?'} %>
+    </div>
+<% end %>
+
+</div>

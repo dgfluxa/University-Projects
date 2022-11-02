@@ -1,0 +1,14 @@
+<h1 class="p-3 mb-2 bg-success text-white" >Nueva Sala de Estudio</h1>
+
+<%= form_with(model: @study_rooms, url: camp_study_rooms_path, local: true) do |f| %>
+<p>
+    <p class="text-body">Nombre</p>
+    <%= f.text_field :name %>
+  </p>
+    <p class="text-body">Ubicacion</p>
+    <%= f.text_field :ubication %>
+  </p>
+  <p>
+    <%= f.submit "Guardar"%>
+  </p>
+<% end %>

@@ -1,0 +1,58 @@
+<h4 class="p-3 mb-2 bg-success text-white" >
+    <%=form_with(model: Buscoclase.new, url: buscador_curso_path, local: true) do |f|%>
+    Cursos <%= f.text_field :course %>
+    <%= f.submit "Buscar"%>
+  <% end %>
+</h4>
+<%
+relacionados = []
+@courses.each do |course|
+  if course.name.include?(@palabra) || course.sigla.include?(@palabra)
+    relacionados << course
+  elsif course.description.include?(@palabra)
+    relacionados << course
+  end
+end
+%>
+
+<% if can? :create, Course %><%=link_to "Nuevo Curso", new_course_path%><% end %>
+<% if relacionados.size > 0 %>
+  <table class="table table-striped">
+    <tr>
+      <thead>
+        <th>Sigla</th>
+        <th>Nombre</th>
+        <th colspan="3"></th>
+      </thead>
+    </tr>
+    <% relacionados.each do |course| %>
+      <tr>
+        <td><%= course.sigla %></td>
+        <td><%= course.name %></td>
+        <td><%= link_to "Ver Más", course_path(course) %></td>
+        <% if can? :manage, course %>
+          <td><%= link_to "Editar", edit_course_path(course) %></td>
+          <td><%= link_to "Eliminar", course, method: :delete, data: {confirm:"¿Estas seguro de eliminar este curso?"} %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </table>
+<% else %>
+  <table class="table">
+    <tr>
+      <th> </th>
+      <th>Lo Siento, No Se Han Encontrado Resultados</th>
+    </tr>
+    <tr>
+      <th> </th>
+      <th> </th>
+      </tr>
+    </table>
+<% end %>
+<table class="table">
+  <tr>
+    <th>
+      <a class="btn btn-primary" href="/courses" role="button">Todos Los Cursos</a>
+    </th>
+  </tr>
+</table>

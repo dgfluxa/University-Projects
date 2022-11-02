@@ -1,0 +1,28 @@
+<h1>Lista de Salas de Estudio</h1>
+<% if can? :create, StudyRoom %>
+  <%= link_to 'Nueva Sala de Estudio', camps_path, data: { confirm: 'Debes escoger un Campus'} %>
+<% end %>
+<table class="table table-striped">
+  <tr>
+    <thead>
+    <th>Nombre</th>
+    <th>Ubicación</th>
+    <th colspan="3"></th>
+    </thead>
+  </tr>
+
+  <% @study_rooms.each do |room| %>
+    <tr>
+      <td><%= room.name %></td>
+      <td><%= room.ubication %></td>
+      <td><%= link_to 'Ver Más', camp_study_room_path(room.camp, room) %></td>
+      <% if can? :manage, room %>
+      <td><%= link_to 'Editar', edit_camp_study_room_path(room.camp, room) %></td>
+      <td><%= link_to 'Eliminar', camp_study_room_path(room.camp, room),
+              method: :delete,
+              data: { confirm: '¿Estás seguro de eliminar esta Sala de Estudio?' } %>
+      </td>
+      <%end%>
+    </tr>
+  <% end %>
+</table>

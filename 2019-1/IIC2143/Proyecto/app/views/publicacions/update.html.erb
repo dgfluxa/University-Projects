@@ -1,0 +1,86 @@
+<h1>Publicaciones#update</h1>
+<p>Find me in app/views/publicaciones/update.html.erb</p>
+<div class="container">
+  <h2 class="text-center">Comentarios</h2>
+
+  <div class="card">
+      <div class="card-body">
+          <div class="row">
+              <div class="col-md-2">
+
+                  <p class="text-secondary text-center">15 Minutes Ago</p>
+              </div>
+              <div class="col-md-10">
+                  <p>
+                      <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+
+                 </p>
+                 <div class="clearfix"></div>
+                  <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                  <p>
+                      <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                      <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                 </p>
+
+
+    <%comentarios_like = 0 %>
+    <%comentarios_dislike = 0 %>
+      <% LikeComent.where(publicacion_comment_id:comment.id).each do |like| %>
+        <% if like.like == 1 %>
+          <% comentarios_like = comentarios_like + 1 %>
+          <% else %>
+          <%comentarios_dislike = comentarios_dislike + 1%>
+          <% end %>
+      <% end %>
+        <tr>
+          <td><%= comentarios_dislike %><%= comentarios_dislike <= 1 ? '  Dislike' : '  Dislikes'%> </td>
+          <td><%= comentarios_like %> <%= comentarios_like <= 1 ? ' Like' : ' Likes'%></td>
+        </tr>
+          <tr>
+              <% pre_like = LikeComent.find_by(user: current_user, publicacion_comment_id: comment.id)%>
+              <% if pre_like %>
+                <% if pre_like.like==1 %>
+                <p>
+                    <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                    <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+               </p>
+               <p>
+                <%= button_to course_publicacion_publicacion_comment_like_coment_path(@course, @publicacion,comment, pre_like), method: :delete do %>
+                  <%= octicon "thumbsdown"%>
+                  <% end %>
+
+                <%= button_to course_publicacion_publicacion_comment_like_coments_path(@course, @publicacion,comment, pre_like), disabled: true do %>
+                  <%= octicon "thumbsup", height: 40%>
+                  <% end %>
+              </p>
+
+                <% else %>
+                  <p>
+                    <%= button_to course_publicacion_publicacion_comment_like_coment_path(@course, @publicacion,comment, pre_like), disabled: true do %>
+                        <%= octicon "thumbsdown", height: 40%>
+                      <% end %>
+
+                    <%= button_to course_publicacion_publicacion_comment_like_coments_path(@course, @publicacion,comment, pre_like), method: :post do%>
+                      <%= octicon "thumbsup"%>
+                      <% end %>
+                  </p>
+                <% end %>
+              <% else %>
+                <p><%= button_to course_publicacion_publicacion_comment_like_coment_path(@course, @publicacion,comment), method: :delete do %>
+                  <%= octicon "thumbsdown"%>
+                  <% end %>
+                <%= button_to course_publicacion_publicacion_comment_like_coments_path(@course, @publicacion,comment), method: :post do%>
+                  <%= octicon "thumbsup"%>
+                  <% end %>
+                </p>
+              <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,36 @@
+<br>
+<p>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseFavoritos" aria-expanded="false" aria-controls="collapseFavoritos">
+    Publicaciones Favoritas
+  </button>
+</p>
+<div class="collapse" id="collapseFavoritos">
+  <div>
+    <% if @user.favorite_publications.size > 0 %>
+      <table class="table table-striped">
+        <tr>
+          <thead>
+          <th>Título</th>
+          <th>Curso</th>
+          <th>Autor</th>
+          <th colspan="2"></th>
+          </thead>
+        </tr>
+          <% @user.favorite_publications.each do |favorite_publication|%>
+        <tr>
+          <td><%= favorite_publication.publicacion.titulo %></td>
+          <td><%= favorite_publication.publicacion.course.sigla%></td>
+          <td><%= link_to favorite_publication.publicacion.user.email, profile_path(favorite_publication.publicacion.user) %></td>
+          <td><%= link_to "Ver Más", course_publicacion_path(favorite_publication.publicacion.course, favorite_publication.publicacion) %></td>
+          <td>
+            <% if can? :manage, favorite_publication %>
+              <%= link_to 'Eliminar de Favoritos', favorite_publications_update_path(publicacion: favorite_publication.publicacion), id:"favorite_publication_link", remote: true %>
+            <%end%>
+        </tr>
+          <% end %>
+      </table>
+    <% else %>
+      <p><strong> No existen publicaciones favoritas</strong></p>
+    <% end %>
+  </div>
+</div>

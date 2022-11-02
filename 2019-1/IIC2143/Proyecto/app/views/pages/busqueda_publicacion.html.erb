@@ -1,0 +1,98 @@
+
+<% @palabra
+relacionados = []
+@publicaciones.each do |publicacion|
+  if publicacion.titulo.include?(@palabra) || publicacion.contenido.include?(@palabra)
+    relacionados << publicacion
+  elsif publicacion.description.include?(@palabra) || publicacion.user.first_name.include?(@palabra)
+    relacionados << publicacion
+  elsif publicacion.user.last_name.include?(@palabra) || publicacion.user.email.include?(@palabra)
+    relacionados << publicacion
+  elsif @course.name.include?(@palabra) || @course.sigla.include?(@palabra)
+    relacionados << publicacion
+  end
+end
+%>
+
+
+<div>
+<% flash.each do |name, msg| %>
+<div class='alert alert-<%= name %>'>
+  <%= msg %>
+</div>
+<% end %>
+</div>
+<h1><%= @course.name %></h1>
+
+<div>
+<h5><b>Sigla:</b> <%=@course.sigla %> </h5>
+</div>
+<div>
+<h5><b>Descripción: </b></h5>
+<%= @course.description %>
+</div>
+
+<div>
+<%= link_to student_course_text, student_courses_update_path(course: @course), id:"student_course_link", remote: true %>
+</div>
+<div>
+<%= link_to professor_course_text, professor_courses_update_path(course: @course), id:"professor_course_link", remote: true %>
+</div>
+<% if can? :manage, @course %>
+<div>
+  <%= link_to "Editar", edit_course_path(@course) %>
+</div>
+  <%= link_to "Eliminar", @course, method: :delete, data: {confirm:"¿Estas seguro de eliminar este curso?"} %>
+<% end %>
+<div>
+<h5  class="p-3 mb-2 bg-success text-white">
+  <%=form_with(model: Buscoclase.new, url: buscador_publicacion_path, local: true) do |f|%>
+  <b>Publicaciones </b>
+  <%= f.text_field :course %>
+  <%= f.submit "Buscar"%>
+<% end %>
+</h5>
+<% if relacionados.size > 0 %>
+  <table class="table table-striped">
+    <tr>
+      <thead>
+      <td><b>Titulo</b></td>
+      <td><b>Autor</b></td>
+      <th colspan="2"></th>
+      </thead>
+    </tr>
+    <% relacionados.each do |publicacion| %>
+      <tr>
+      <td><%= publicacion.titulo %></<td>
+      <td><%=link_to publicacion.user.email, profile_path(publicacion.user) %></td>
+      <td><%= link_to "Ver más", course_publicacion_path(@course, publicacion) %></td>
+      <% if can? :manage, publicacion%>
+        <td><%= link_to "Eliminar",  course_publicacion_path(@course, publicacion), method: :delete, data: {confirm:"¿Estas seguro de eliminar esta publicación?"} %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+<table class="table">
+<tr>
+  <th> </th>
+  <th>Lo Siento, No Se Han Encontrado Resultados</th>
+  </tr>
+  <tr>
+    <th> </th>
+    <th> </th>
+    </tr>
+</table>
+<% end %>
+<table class="table">
+  <tr>
+  <th>
+    <%= link_to "Todas Las Publicaciones", course_path(@course), class: "btn btn-primary" %>
+  </th>
+  <% if can? :create, Publicacion %>
+    <td>
+    <%= link_to "Nueva Publicación", new_course_publicacion_path(@course) %>
+    </td>
+  <% end %>
+  </tr>
+</table>

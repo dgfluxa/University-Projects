@@ -1,0 +1,36 @@
+<h1>Listado de Solicitudes para Moderador</h1>
+<table class="table table-striped">
+  <tr>
+    <thead>
+    <th>Nombre Completo</th>
+    <th>Email</th>
+    <th>Curso</th>
+    <th colspan="1"></th>
+    </thead>
+  </tr>
+  <% ModerationRequest.all.each do |request| %>
+    <% if current_user.admin %>
+      <tr>
+        <td><%= request.user.first_name %> <%= request.user.last_name %></td>
+        <td><%= link_to request.user.email, profile_path(request.user)%></td>
+        <td>
+          <%= request.course.name %>
+          <%= '(' + request.course.sigla + ')' %>
+        </td>
+        <td><%= link_to "Ver Más", course_moderation_request_path(request.course, request) %></td>
+      </tr>
+    <% elsif current_user.moderated_courses != [] %>
+      <% if ModeratedCourse.find_by(user: current_user, course: request.course) %>
+        <tr>
+          <td><%= request.user.first_name %> <%= request.user.last_name %></td>
+          <td><%= link_to request.user.email, profile_path(request.user)%></td>
+          <td>
+            <%= request.course.name %>
+            <%= '(' + request.course.sigla + ')' %>
+          </td>
+          <td><%= link_to "Ver Más", course_moderation_request_path(request.course, request) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>

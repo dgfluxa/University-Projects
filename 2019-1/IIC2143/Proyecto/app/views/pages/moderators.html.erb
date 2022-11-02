@@ -1,0 +1,22 @@
+<h1>Listado de Moderadores</h1>
+<table class="table table-striped">
+  <tr>
+    <thead>
+    <th>Nombre Completo</th>
+    <th>Email</th>
+    <th colspan="2"></th>
+    </thead>
+  </tr>
+  <% @users.each do |user| %>
+    <% if user.admin == false and user.moderated_courses != [] %>
+    <tr>
+      <td><%= user.first_name %> <%= user.last_name %></td>
+      <td><%= link_to user.email, profile_path(user)%></td>
+      <td><%= link_to "Ver Más", profile_path(user) %></td>
+      <% if current_user.admin %>
+        <td><%= link_to "Hacer Administrador", make_admin_path(user)%></td>
+      <% end %>
+    </tr>
+    <% end %>
+  <% end %>
+</table>

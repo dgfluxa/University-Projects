@@ -1,0 +1,40 @@
+<strong>Modificar curso, tiempo, : </strong>
+
+<%=form_with(model: @buscoclases, url: editar_anuncio_path, local: true) do |f|%>
+<div>
+  <%= f.label :'Tiempo' %>
+  <%= f.number_field :time ,placeholder: "rellena si deseas modificar tiempo"%>
+</div>
+<div >
+    <%= f.label :'Curso' %>
+    <% cursos = [] %>
+    <% current_user.student_courses.each do |scourse| %>
+    <% cursos.push(scourse.course.sigla) %>
+    <% end %>
+    <%= f.select :course, cursos%>
+
+</div>
+<div>
+  <%= f.submit :"Modificar"%>
+</div>
+<% end %>
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

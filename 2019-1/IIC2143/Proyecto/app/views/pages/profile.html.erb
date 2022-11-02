@@ -1,0 +1,116 @@
+<div class='container'>
+  <div class="row justify-content-md-center">
+    <h2> Perfil de <%= @user.first_name %> </h2>
+  </div>
+
+  <% if @user.admin %>
+  <div class="row justify-content-md-center">
+    <p class="text-success"><strong> *ADMINISTRADOR* </strong></p>
+  </div>
+  <%end%>
+  <br>
+  <div class="row justify-content-md-center">
+    <div class='col-md-auto'>
+      <%= image_tag @user.avatar.url(:medium) %>
+
+    </div>
+  <div class='col-md-auto'>
+    <div>
+      <h5><b>Nombre: </b> <%= @user.first_name%> <%= @user.last_name%> </h5>
+    </div>
+    <div>
+      <h5><b>Mail: </b> <%= @user.email%> </h5>
+    </div>
+    <%
+    likes_total = 0
+    Publicacion.all.each do |publicacion|
+      #suma de todos los likes de sus publicaciones
+      if publicacion.user == @user
+        Like.all.each do |like|
+          if like.publicacion == publicacion
+            if like.like == 0
+              likes_total -= 1
+            else
+              likes_total += 1
+            end
+          end
+        end
+      end
+      #suma de todos los likes de sus comentarios
+      publicacion.publicacion_comments.each do |comentario|
+        if comentario.user == @user
+          LikeComent.all.each do |like|
+            if like.publicacion_comment_id == comentario.id
+              if like.like == 0
+                likes_total -= 1
+              else
+                likes_total += 1
+              end
+            end
+          end
+        end
+      end
+    end
+
+    %>
+    <% if likes_total == 0
+        reputacion = 'Pasivo'
+      elsif likes_total < 0
+        reputacion = 'Controversial'
+      else
+        reputacion = 'Colaborador'
+      end
+    %>
+    <div>
+      <h5><b>Reputación: </b> <%= reputacion%> </h5>
+    </div>
+
+  <div>
+    <h5><b>Cursos donde es alumno: </b> <%= %> </h5>
+    <% @user.student_courses.each do |student_course| %>
+    <%= link_to student_course.course.sigla, student_course.course %>
+    <% end %>
+  </div>
+  <div>
+    <h5><b>Cursos donde es profesor: </b> <%= %> </h5>
+    <% @user.professor_courses.each do |professor_course| %>
+    <%= link_to professor_course.course.sigla, professor_course.course %>
+    <% end %>
+  </div>
+  <% if @user.moderated_courses != [] and @user.admin == false %>
+  <div>
+    <h5><b>Cursos donde es Moderador: </b> <%= %> </h5>
+    <% @user.moderated_courses.each do |moderated_course| %>
+    <%= link_to moderated_course.course.sigla, moderated_course.course %>
+    <% end %>
+  </div>
+  <% end %>
+
+</div>
+</div>
+
+    <% if can? :manage, @user %>
+      <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+          <%= render "pages/favorites" %>
+        </div>
+      </div>
+      <div class="row justify-content-md-center">
+      <% if @user == current_user %>
+        <%= link_to "Editar", edit_user_registration_path %>
+      <% elsif @user.admin == false %>
+        <%= link_to 'Eliminar Usuario', delete_user_path(@user), data: {confirm:"¿Estas seguro de eliminar este usuario?"} %>
+      <% end %>
+      </div>
+    <% end %>
+
+    <% if @user != current_user %>
+      <div>
+        <%=form_with(model: @conversacion, url: nueva_conversacion_path, local: true) do |f|%>
+        <div class="row justify-content-md-center">
+          <%= f.submit :"Enviar Mensaje"%>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+</div>

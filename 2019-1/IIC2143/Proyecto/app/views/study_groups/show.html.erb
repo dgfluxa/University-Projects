@@ -1,0 +1,47 @@
+<div class='container'>
+  <div class="row justify-content-md-center">
+    <h1><b>Grupo de Estudio</b></h1>
+  </div>
+  <div>
+  <p><b>Curso:</b> <%= @study_group.course.sigla %> </p>
+  </div>
+  <div>
+  <p><b>Sala de Estudio:</b> <%= @study_group.study_room.name %> </p>
+  </div>
+  <div>
+  <p><b>Inicio:</b> <%= @study_group.created_at%> </p>
+  </div>
+  <div>
+  <p><b>Duración:</b> <%= @study_group.duration %> minutos</p>
+  </div>
+  <div>
+  <p><b>Término:</b> <%= @study_group.created_at + @study_group.duration.minutes %></p>
+  </div>
+  <div>
+  <p><b>Máximos participantes:</b> <%= @study_group.subscribed_users.size %>/<%= @study_group.max %> </p>
+  </div>
+  <div>
+    <p><b>Jefe de Grupo: <%= link_to @study_group.user.email, profile_path(@study_group.user)%></b></p>
+  </div>
+  <div>
+    <p><b>Usuarios:</b>
+    <% @study_group.subscribed_users.each do |subscribed_user| %>
+        <%= link_to subscribed_user.user.email, profile_path(subscribed_user.user) %>
+    <% end %>
+    </p>
+
+  </div>
+  <div>
+    <% if @study_group.subscribed_users.size == 1 and @study_group.subscribed_users[0].user==current_user%>
+    <% elsif @study_group.subscribed_users.size < @study_group.max %>
+      <%= link_to subscribed_user_text, subscribed_users_update_path(study_group: @study_group), id:"subscribed_user_link", remote: true %>
+    <% elsif @study_group.subscribed_users.size >= @study_group.max%>
+      <p><b>Este curso se encuentra lleno</b></p>
+    <% end %>
+  </div>
+  <div>
+    <% if can? :manage, @study_group %>
+      <%= link_to "Eliminar", @study_group, method: :delete, data: {confirm:"¿Estas seguro de eliminar este Grupo de Estudio?"} %>
+    <% end %>
+  </div>
+</div>

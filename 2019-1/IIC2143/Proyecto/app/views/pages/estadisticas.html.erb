@@ -1,0 +1,39 @@
+<h4 class="p-3 mb-2 bg-success text-white" >Estadísticas de ESTUD10</h4>
+<table class="table">
+  <tr>
+<th><h6 class="p-3 mb-2 bg-success text-white"><b>Suscripciones </b></h6></th>
+<th><%= line_chart User.group_by_hour(:created_at).count %></th>
+<th><h6 class="p-3 mb-2 bg-success text-white"><b>Creaciones de cuentas
+  de usuarios por hora</b></h6></th>
+ </tr>
+
+
+
+ <tr>
+   <th><h6 class="p-3 mb-2 bg-success text-white"><b>Actividades</b></h6></th>
+   <th><%= line_chart Publicacion.group_by_hour(:created_at).count %></th>
+   <th><h6 class="p-3 mb-2 bg-success text-white"><b>Publicaciones por hora</b></h6></th>
+  </tr>
+<tr>
+   <th><h6 class="p-3 mb-2 bg-success text-white"><b>Actividades</b></h6></th>
+   <th><%= line_chart PublicacionComment.group_by_hour(:created_at).count %></th>
+      <th><h6 class="p-3 mb-2 bg-success text-white"><b>Comentarios por hora</b></h6></th>
+</tr>
+<tr>
+   <th><h6 class="p-3 mb-2 bg-success text-white"><b>Actividades</b></h6></th>
+   <th><%= line_chart StudyGroup.group_by_hour(:created_at).count %></th>
+   <th><h6 class="p-3 mb-2 bg-success text-white"><b>Creaciones de Grupos
+   de estudios por hora</b></h6></th>
+</tr>
+<tr>
+   <th><h6 class="p-3 mb-2 bg-success text-white"><b>Actividades</b></h6></th>
+   <th><%= line_chart Ofertclase.group_by_hour(:created_at).count %></th>
+   <th><h6 class="p-3 mb-2 bg-success text-white"><b>Clases ofrecidas por hora</b></h6></th>
+</tr>
+<tr>
+   <th><h6 class="p-3 mb-2 bg-success text-white"><b>Actividades</b></h6></th>
+   <th><%= line_chart Buscoclase.group_by_hour(:created_at).count %></th>
+   <th><h6 class="p-3 mb-2 bg-success text-white"><b>Clases demandadas por hora</b></h6></th>
+</tr>
+
+</table>

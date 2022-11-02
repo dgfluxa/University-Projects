@@ -1,0 +1,9 @@
+<%=form_with(model: @message, url: nuevo_mensaje_path, local: true) do |f|%>
+<div class="card border-success mb-3" style="max-width: 23rem;">
+    <div class="card-body">
+            <%= f.text_area :texto, placeholder: "Escribe...", style: "height: 30px;"%>
+            <%= f.submit :"Enviar", class: "btn btn-success"%>
+
+    </div>
+</div>
+<% end %>

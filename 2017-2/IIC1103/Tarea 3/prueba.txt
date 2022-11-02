@@ -1,0 +1,6 @@
+Pichulotote3000
+150,20,20,40,20,1440
+63,24,26,40,24,1240
+87
+Interrogacion de Calculo I,Interrogacion de Algebra Lineal,Interrogacion de Biologia de la Celula
+200

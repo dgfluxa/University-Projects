@@ -1,0 +1,20 @@
+<h1>Editar Grupo</h1>
+<div>
+<p><b>Curso:</b> <%= @course.sigla %> </p>
+</div>
+<div>
+<p><b>Sala de Estudio:</b> <%= @study_room.name %> </p>
+</div>
+<%=form_with(model: @study_groups, url: grupo_creado_path, local: true) do |f|%>
+  <div>
+    <%= f.label :'Máximo de personas' %>
+    <%= f.number_field :max, min: 1, max: 25, required: true %>
+  </div>
+  <div>
+    <%= f.label :'Duración en minutos' %>
+    <%= f.number_field :duration %>
+  </div>
+  <div>
+    <%= f.submit :"Crear Grupo"%>
+  </div>
+  <% end %>

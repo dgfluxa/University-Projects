@@ -1,0 +1,36 @@
+Sea U el valor del umbral:
+
+a)
+I: .word 11, 75, 14 
+U: 550
+Bueno
+
+b)
+I: .word 28, 57, 15
+U: 450
+Bueno
+
+c)
+I: .word 0, 97, 3
+U: 350
+Bueno
+
+d)
+I: .word 4, 3, 93
+U: 450
+Malo
+
+e)
+I: .word 35, 19, 46
+U: 400
+Malo
+
+f)
+I: .word 5, 84, 11
+U: 200
+Malo
+
+g)
+I: .word 15, 48, 37
+U: 550
+Bueno

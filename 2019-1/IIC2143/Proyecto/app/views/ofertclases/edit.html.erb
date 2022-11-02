@@ -1,0 +1,40 @@
+<h1>Edita tu anuncio:</h1>
+<%=form_with(model: @ofertclases, url: editarclase_path, local: true) do |f|%>
+
+<div>
+  <%= f.label :'Precio' %>
+  <%= f.number_field :precio ,placeholder: "valor por bloque"%>
+</div>
+<div>
+  <%= f.label :'Bloque de tiempo' %>
+  <%= f.number_field :time ,placeholder: "en minutos"%>
+</div>
+<div >
+    <%= f.label :'Curso' %>
+    <% cursos = [] %>
+    <% current_user.professor_course.courses.each do |course| %>
+    <% cursos.push(course.sigla) %>
+    <% end %>
+    <%= f.select :course, cursos%>
+
+</div>
+<div>
+    <%=f.label :'Sala' %>
+    <%salas = [] %>
+    <%@rooms.each do |sala| %>
+    <% salas.push(sala.name) %>
+    <% end %>
+    <%= f.select :sala, salas %>
+</div>
+<div>
+  <%= f.label :'Descripción: '%>
+  <div>
+  <%= f.text_area :description, placeholder: "Agrega una descripcion tuya" %>
+  </div>
+
+
+</div>
+<div>
+  <%= f.submit :"Ofrecer clase"%>
+</div>
+<% end %>

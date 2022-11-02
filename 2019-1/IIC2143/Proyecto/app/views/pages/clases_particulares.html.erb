@@ -1,0 +1,66 @@
+<h4 class="p-3 mb-2 bg-success text-white" >
+    <%=form_with(model: Buscoclase.new, url: buscador_path, local: true) do |f|%>
+    Clase Particulares Ofrecidas <%= f.text_field :course %>
+    <%= f.submit "Buscar"%>
+  <% end %>
+</h4>
+<%
+clases = []
+Ofertclase.all.each do |clase|
+  clases << clase
+end
+id_grupo = 0
+%>
+<%
+ordenados = []
+  while clases.size != 0
+    mayor = clases[0]
+    clases.each do |anuncio| #grupo, oc, bc
+      if anuncio.created_at > mayor.created_at
+        mayor = anuncio
+        end
+      end
+      clases.delete(mayor)
+      ordenados << mayor
+  end
+%>
+<table class="table table-striped">
+  <tr>
+    <thead>
+      <th scope="col">Profesor</th>
+      <th scope="col">Fecha creación</th>
+      <th scope="col">Curso</th>
+      <th scope="col">Opciones</th>
+    </thead>
+  </tr>
+  <% ordenados.each do |clase| %>
+    <tr>
+    <% if clase.class.to_s == "Ofertclase"
+      user = User.find_by(email: clase.user)
+      curso = Course.find_by(sigla: clase.course)%>
+    <th> <%= link_to user.email, profile_path(user)%></th>
+    <th> <%= clase.created_at.strftime("%F %T") %> </th>
+    <th> <%=link_to curso.name, course_path(curso) %> </th>
+    <th> <%= link_to "Ver más", ofertclase_path(clase)%>
+      <% if current_user.email == clase.user %>
+        <%= link_to "Eliminar", clase, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %>
+      <% elsif current_user.moderated_courses != [] %>
+        <% current_user.moderated_courses.each do |moderated| %>
+          <% if clase.course == moderated.course.sigla %>
+            <%= link_to "Eliminar", clase, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %>
+          <%end%>
+        <%end%>
+      <%end%>
+    </th>
+  </tr>
+
+    <% end %>
+  <% end %>
+</table>
+
+<table class="table">
+<tr>
+  <th><%= link_to "Solicitar Clase", new_buscoclase_path %> </th>
+  <th><%= link_to "Ofrecer Clase", new_ofertclase_path %> </th>
+  </tr>
+</table>

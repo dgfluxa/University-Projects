@@ -1,0 +1,59 @@
+<h4 class="p-3 mb-2 bg-success text-white" >Buzón de <%=current_user.first_name %></h4>
+
+<h3> Conversaciones: </h3>
+<table class="table table-striped">
+  <tr>
+    <thead>
+    <th>Nombre</th>
+    <th>Estado</th>
+    <th>Fecha</th>
+    <th colspan="1"></th>
+    </thead>
+  </tr>
+<% conversaciones = []%>
+<% Conversation.all.each do |conversacion| %>
+<% if conversacion.user1_id == current_user.id || conversacion.user2_id == current_user.id %>
+  <% conversaciones << conversacion %>
+  <% end %>
+<% end %>
+<% orden_llegada = []
+  while conversaciones.size != 0
+    mayor = conversaciones[0]
+    conversaciones.each do |conversacion|
+      if conversacion.messages.last.created_at > mayor.messages.last.created_at
+        mayor = conversacion
+        end
+      end
+      conversaciones.delete(mayor)
+      orden_llegada << mayor
+  end
+%>
+<% orden_llegada.each do |conversacion| %>
+  <% if conversacion.user1_id == current_user.id %>
+    <% usuario = User.find_by(id: conversacion.user2_id) %>
+    <tr>
+      <td><%= link_to usuario.first_name+" "+usuario.last_name, profile_path(usuario) %></td>
+      <% if conversacion.messages.last.user1_id == current_user.id %>
+        <td>Aun no recibes respuesta de <%= usuario.first_name%> </td>
+      <% else %>
+        <td> Tienes un mensaje de <%= usuario.first_name %></td>
+      <% end %>
+      <td> <%= conversacion.messages.last.created_at.strftime("%F %T") %></td>
+      <td><%= link_to 'Ver Conversación', conversation_messages_path(conversacion) %></td>
+      </tr>
+  <% elsif conversacion.user2_id == current_user.id %>
+      <% usuario = User.find_by(id: conversacion.user1_id) %>
+      <tr>
+      <td>  <%= link_to usuario.first_name+" "+usuario.last_name, profile_path(usuario)%></td>
+      <% if conversacion.messages.last.user1_id == current_user.id %>
+        <td>Aun no recibes respuesta de <%= usuario.first_name%> </td>
+      <% else %>
+        <td> Tienes un mensaje de <%= usuario.first_name %></td>
+      <% end %>
+      <td> <%= conversacion.messages.last.created_at.strftime("%F %T") %></td>
+      <td><%= link_to 'Ver Conversación', conversation_messages_path(conversacion) %></td>
+
+      </tr>
+  <% end %>
+<% end %>
+</table>

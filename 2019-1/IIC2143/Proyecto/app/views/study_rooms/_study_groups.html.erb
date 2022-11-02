@@ -1,0 +1,41 @@
+<br>
+<p>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseGrupos" aria-expanded="false" aria-controls="collapseGrupos">
+    Ver Grupos de Estudio
+  </button>
+</p>
+<div class="collapse" id="collapseGrupos">
+  <div>
+    <% if @study_rooms.study_groups.size > 0 %>
+      <table class="table table-striped">
+        <tr>
+          <thead>
+          <th>Sigla Curso</th>
+          <th>Inicio</th>
+          <th>Término</th>
+          <th colspan="2"></th>
+          </thead>
+        </tr>
+          <% @study_rooms.study_groups.each do |study_group|%>
+        <tr>
+          <td><%= study_group.course.sigla %></td>
+          <td><%= study_group.created_at%></td>
+          <td><%= study_group.created_at + study_group.duration.minutes %></td>
+          <td><%= link_to "Ver Más", study_group_path(study_group) %></td>
+          <td>
+            <% if SubscribedUser.where(study_group: study_group, user: current_user) == [] and study_group.subscribed_users.size < study_group.max %>
+              <%= link_to 'Unirse al grupo', subscribed_users_update_path(study_group: study_group), id:"subscribed_user_link", remote: true %>
+            <% elsif SubscribedUser.where(study_group: study_group, user: current_user) != [] %>
+              <%= link_to 'Salir del grupo', subscribed_users_update_path(study_group: study_group), id:"subscribed_user_link", remote: true %>
+            <% else %>
+              <p><b>Este curso se encuentra lleno</b></p>
+            <% end %></td>
+        </tr>
+          <% end %>
+      </table>
+    <% else %>
+      <p><strong> Aún no existen Grupos de Estudio en esta sala</strong></p>
+    <% end %>
+    <%= link_to "Nuevo Grupo", paso_path %>
+  </div>
+</div>

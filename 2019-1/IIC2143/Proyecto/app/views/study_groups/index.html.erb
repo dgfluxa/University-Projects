@@ -1,0 +1,32 @@
+<h1 class="p-3 mb-2 bg-success text-white" >Listados De Grupos De Estudios</h1>
+<%=link_to "Nuevo Grupo", paso_path%>
+<table class="table table-striped">
+  <tr>
+    <thead>
+    <th>Sigla Curso</th>
+    <th>Sala</th>
+    <th>Inicio</th>
+    <th>Término</th>
+    <th colspan="2"></th>
+    </thead>
+  </tr>
+  <% @study_groups.each do |study_group| %>
+    <tr>
+      <td><%= study_group.course.sigla %></td>
+      <td><%= study_group.study_room.name %></td>
+      <td><%= study_group.created_at.strftime("%F %T")%></td>
+      <td><%= study_group.created_at + study_group.duration.minutes %></td>
+      <td><%= link_to "Ver Más", study_group_path(study_group) %></td>
+      <td><% if can? :manage, study_group %>
+            <%= link_to "Eliminar", study_group, method: :delete, data: {confirm:"¿Estas seguro de eliminar este Grupo de Estudio?"} %>
+          <% end %></td>
+    </tr>
+  <% end %>
+</table>
+<h5  class="p-3 mb-2 bg-success text-white">
+  <%=form_with(model: Buscoclase.new, url: buscador_grupo_path, local: true) do |f|%>
+  <b>Haz Una Busqueda De Palabras Clave </b>
+  <%= f.text_field :course %>
+  <%= f.submit "Buscar"%>
+<% end %>
+</h5>

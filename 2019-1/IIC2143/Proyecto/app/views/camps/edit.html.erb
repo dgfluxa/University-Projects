@@ -1,0 +1,20 @@
+<h1 class="p-3 mb-2 bg-success text-white" >Editar Campus</h1>
+<%= form_for @camps do |f| %>
+<p>
+    <p class="text-body">Nombre</p>
+    <%= f.text_field :nombre %>
+  </p>
+
+  <p>
+    <p class="text-body">Dirección</p>
+    <%= f.text_area :ubicacion%>
+  </p>
+  <p>
+    <p class="text-body">URL Google Maps</p>
+    <%= f.text_area :url %>
+  </p>
+
+  <p>
+    <%= f.submit "Guardar"%>
+  </p>
+<% end %>

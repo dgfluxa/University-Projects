@@ -1,0 +1,52 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Atributos anuncio</th>
+      <th scope="col">Datos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <tr>
+      <td><b> Fecha anuncio: </b></td>
+      <td><%=@ofertclases.created_at.strftime("%F %T") %></td>
+    <tr>
+        <td><strong> Contacto Usuario:</strong></td>
+        <% user = User.find_by(email: @ofertclases.user) %>
+        <td><%= link_to user.email, profile_path(user)%></td>
+      </tr>
+      <tr>
+        <td><strong> Nombre curso: </strong></td>
+        <td><%= @course.find_by(sigla:@ofertclases.course).name %></td>
+      </tr>
+      <tr>
+        <td><strong> Sigla curso:</strong></td>
+        <td><%= @ofertclases.course %></td>
+      </tr>
+      <tr>
+        <td><strong> Precio: </strong></td>
+        <td><%= @ofertclases.precio %></td>
+      </tr>
+      <tr>
+        <td><strong>Tiempo de estudio:</strong></td>
+        <td><%= @ofertclases.time %> minutos</td>
+      </tr>
+  <tr>
+    <td><strong> Descripción profesor: <strong></td>
+    <td><%= @ofertclases.description %></td>
+  </tr>
+  </tbody>
+</table>
+<% if current_user.email == @ofertclases.user %>
+  <div> <%= link_to "Editar anuncio", edit_ofertclase_path%></div>
+  <%= link_to "Eliminar", ofertclase_path, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %>
+<% elsif current_user.moderated_courses != [] %>
+  <% current_user.moderated_courses.each do |moderated| %>
+    <% if @ofertclases.course == moderated.course.sigla %>
+      <%= link_to "Eliminar", ofertclase_path, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %>
+    <%end%>
+  <%end%>
+<%end%>
+<div>
+  <%= link_to "Volver a Anuncios", clases_particulares_path %>
+</div>

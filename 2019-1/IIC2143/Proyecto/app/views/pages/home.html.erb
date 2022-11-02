@@ -1,0 +1,186 @@
+<h1><b>Bienvenido <%= current_user.first_name %>!</b></h1>
+
+<% post_recientes = [] %>
+<% current_user.student_courses.each do |student_course|%>
+  <% student_course.course.publicacions.each do |publicacion|%>
+    <% post_recientes << publicacion%>
+  <% end %>
+  <% student_course.course.study_groups.each do |study_group|%>
+    <% post_recientes << study_group %>
+  <% end %>
+  <% grupo = [] %>
+  <% Buscoclase.where(course: student_course.course.sigla).each do |busco_clase| %>
+    <% if !(grupo.include? (busco_clase.id_grupo)) %>
+      <% grupo << busco_clase.id_grupo %>
+      <%  post_recientes << busco_clase %>
+    <% end %>
+  <% end %>
+  <% Ofertclase.where(course: student_course.course.sigla).each do |ofert_clase| %>
+    <%  post_recientes << ofert_clase %>
+  <% end %>
+<% end %>
+<% current_user.professor_courses.each do |professor_course|%>
+  <% professor_course.course.publicacions.each do |publicacion|%>
+    <% post_recientes << publicacion%>
+  <% end %>
+  <% professor_course.course.study_groups.each do |study_group|%>
+    <% post_recientes << study_group %>
+  <% end %>
+  <% grupo = [] %>
+  <% Buscoclase.where(course: professor_course.course.sigla).each do |busco_clase| %>
+    <% if !(grupo.include? (busco_clase.id_grupo)) %>
+      <% grupo << busco_clase.id_grupo %>
+      <%  post_recientes << busco_clase %>
+    <% end %>
+  <% end %>
+  <% Ofertclase.where(course: professor_course.course.sigla).each do |ofert_clase| %>
+    <%  post_recientes << ofert_clase %>
+  <% end %>
+<% end %>
+<% post_recientes = post_recientes.sort{ | a, b | b.created_at <=> a.created_at } %>
+
+<% if post_recientes != []%>
+  <h1>Actividad Reciente:</h1>
+  <table class="table table-hover">
+    <% post_recientes.each do |post| %>
+      <% post.class.to_s %>
+
+      <% if post.instance_of? Publicacion %>
+        <thead>
+          <tr class="table-success">
+            <th>Titulo</th>
+            <td><%= post.titulo %></td>
+            <th>Curso</th>
+            <td>
+              <%= post.course.name %>
+              <%= '(' + post.course.sigla + ')' %>
+            </td>
+            <th>Autor</th>
+            <td><%=link_to  post.user.email, profile_path(post.user) %></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Descripción:</th>
+            <td colspan="5" ><%= post.description %></td>
+          </tr>
+          <tr>
+            <td><%= link_to "Ver más", course_publicacion_path(post.course, post) %></td>
+            <% if can? :manage, post%>
+              <td><%= link_to "Eliminar",  course_publicacion_path(post.course, post), method: :delete, data: {confirm:"¿Estas seguro de eliminar esta Publicación?"} %></td>
+              <td colspan="4"></td>
+            <% else %>
+              <td colspan="5"></td>
+            <% end %>
+          </tr>
+        </tbody>
+
+      <% elsif post.instance_of? StudyGroup %>
+        <thead>
+          <tr class="table-success">
+            <th>Grupo de estudio para</th>
+            <td>
+              <%= post.course.name %>
+              <%= '(' + post.course.sigla + ')' %>
+            </td>
+            <th>Sala</th>
+            <td><%= post.study_room.name %></td>
+            <th>Jefe Grupo</th>
+            <td><%= link_to  post.user.email, profile_path(post.user) %></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Inicio</th>
+            <td><%= post.created_at.strftime("%F %T")%></td>
+            <th>Termino</th>
+            <td><%= (post.created_at + post.duration.minutes).strftime("%F %T") %></td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td><%= link_to "Ver Más", study_group_path(post) %></td>
+            <% if can? :manage, post %>
+                  <td><%= link_to "Eliminar", post, method: :delete, data: {confirm:"¿Estas seguro de eliminar este Grupo de Estudio?"} %></td>
+                  <td colspan="4"></td>
+            <% else %>
+              <td colspan="5"></td>
+            <% end %>
+          </tr>
+        </tbody>
+
+      <% elsif post.instance_of? Buscoclase %>
+        <thead>
+          <tr class="table-success">
+            <th>Se busca clases particulares para</th>
+            <td>
+              <% curso = Course.where(sigla: post.course).first %>
+              <%= curso.name %>
+              <%= '(' + curso.sigla + ')' %>
+            </td>
+            <th>Fecha del Anuncio</th>
+            <td><%= post.created_at.strftime("%F %T") %></td>
+            <td colspan="2"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to "Ver Más", buscoclase_path(post) %></td>
+            <td><% if current_user.email == post.user %>
+                  <%= link_to "Eliminar", post, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %>
+                  <td colspan="4"></td>
+                <% elsif current_user.moderated_courses != [] %>
+                  <% current_user.moderated_courses.each do |moderated| %>
+                    <% if post.course == moderated.course.sigla %>
+                      <%= link_to "Eliminar", post, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %></td>
+                    <%end%>
+                  <%end%>
+                  <td colspan="4"></td>
+                <% else %>
+                  <td colspan="5"></td>
+                <% end %>
+          </tr>
+        </tbody>
+
+      <% elsif post.instance_of? Ofertclase %>
+        <thead>
+          <tr class="table-success">
+            <th>Se ofrece clases particulares para</th>
+            <td>
+              <% curso = Course.where(sigla: post.course).first %>
+              <%= curso.name %>
+              <%= '(' + curso.sigla + ')' %>
+            </td>
+            <th>Fecha del Anuncio</th>
+            <td><%= post.created_at.strftime("%F %T") %></td>
+            <th>Profesor</th>
+            <% profesor = User.find_by(email: post.user) %>
+            <td><%= link_to  profesor.email, profile_path(profesor) %></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to "Ver Más", ofertclase_path(post) %></td>
+            <td><% if current_user.email == post.user %>
+              <%= link_to "Eliminar", post, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %>
+              <td colspan="4"></td>
+            <% elsif current_user.moderated_courses != [] %>
+              <% current_user.moderated_courses.each do |moderated| %>
+                <% if post.course == moderated.course.sigla %>
+                  <%= link_to "Eliminar", post, method: :delete, data: {confirm:"¿Estas seguro de eliminar este evento?"} %></td>
+                <%end%>
+              <%end%>
+              <td colspan="4"></td>
+            <% else %>
+              <td colspan="5"></td>
+            <% end %>
+          </tr>
+        </tbody>
+      <% end %>
+    <% end %>
+  </table>
+<% else %>
+  <br>
+  <div class='container'>
+    <h3> Al parecer no tienes actividad reciente, te invitamos a explorar la página y recuerda subscibirte a cursos para que te notifiquemos sus novedades! </h3>
+  </div>
+<% end %>

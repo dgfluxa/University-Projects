@@ -1,0 +1,21 @@
+<h1>Crear Grupo</h1>
+<div>
+<table class="table table-striped">
+  <tr>
+    <thead>
+    <th>Sigla</th>
+    <th>Nombre</th>
+    <th colspan="1"></th>
+    </thead>
+  </tr>
+  <% @courses.each do |course| %>
+    <tr>
+      <td><%= course.sigla %></td>
+      <td><%= course.name %></td>
+      <td>
+        <%= link_to "Seleccionar", paso_room_path(course) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+</div>

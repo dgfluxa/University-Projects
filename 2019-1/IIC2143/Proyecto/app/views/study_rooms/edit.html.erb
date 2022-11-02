@@ -1,0 +1,15 @@
+<h1 class="p-3 mb-2 bg-success text-white" >Editar Sala de Estudio</h1>
+
+<%= form_with(model: @study_rooms, url: camp_study_room_path, :method => :PATCH  ,local: true) do |f| %>
+<p>
+    <p class="text-body">Nombre</p>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <p class="text-body">Ubicación</p>
+    <%= f.text_field :ubication %>
+  </p>
+  <p>
+    <%= f.submit "Guardar"%>
+  </p>
+<% end %>
