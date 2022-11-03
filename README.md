@@ -1,5 +1,5 @@
 # University-Projects
-Compilation of programming homeworks and projects done in courses during my studies
+Compilation of programming homeworks and projects done in courses during my studies at "Pontificia Universidad Católica de Chile"
 
 ## Courses
 
