@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    box-sizing: border-box;
+    font-size: 100%;
+  }
+  
+  body {
+    background-color: rgb(5, 4, 0);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .navbar {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: GoldenRod;
+    padding: 1.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    height: 10vh;
+  }
+  
+  .navbar-logo,
+  .navbar-logo:link,
+  .navbar-logo:visited {
+    margin-right: auto;
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .navbar-logo{
+    transition-duration: 0.2s;
+    font-weight: bold;
+    }
+    .navbar-logo:hover{
+    font-size: 1.55rem;
+    }
+  
+  .navbar-title:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-items {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar-item:not(:last-child) {
+    margin-right: 2rem;
+  }
+  
+  .navbar-link,
+  .navbar-link:link,
+  .navbar-link:visited {
+    text-decoration: none;
+    color: #faf9f9;
+    display: inline-block;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid transparent;
+    font-size: 1rem;
+  }
+  
+  .navbar-link:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-link.navbar-link--active {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #faf9f9;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(19, 1fr);
+    grid-template-rows: repeat(6, 20vh);
+  }
+  .foto{
+      grid-column: 1;
+      grid-row: 1;
+      filter: invert(100%);
+      width:20vh;
+      height:20vh;
+  }
+  .foto2{
+    width:8vh;
+    height:8vh;
+    float: left;
+    border-radius: 6vh;
+  }
+  .cuadro{
+    color: white;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background-color: black;
+    font-size: 3vh;
+    font-family: cursive;
+    position: static;
+    border-radius:5vh;
+    border:4px solid white;
+    text-align: center;
+    height: fit-content;
+  }
+  .titulo{
+      grid-row: 1;
+      grid-column-start: 2;
+      grid-column-end: 20;
+      font-size: 10vh;
+      font-family: cursive;
+      color: white;
+    }
+
+    .partidas{
+        grid-column-start: 5;
+        grid-column-end: 18;
+        grid-row-start: 2;
+        grid-row-end: 5;
+        background: goldenrod;
+        border: 5px solid white;
+        border-radius: 10px;
+        height: fit-content;
+        width: fit-content;
+
+    }
+    .partida{
+        font-family: cursive;
+        font-size: 6vh;
+        color: black;
+        text-decoration: underline;
+        border-bottom: 3px solid black;
+    }
+    .p{
+        font-family: cursive;
+        font-size: 4vh;
+        color: white;
+        text-align: center;
+        min-height: 20px;
+        border-bottom: 3px solid black;
+    }
+
+    .partida2{
+        font-family: cursive;
+        font-size: 6vh;
+        border-left:3px solid black;
+        border-bottom: 3px solid black;
+        color: black;
+        text-decoration: underline;
+        text-align: center;
+      }
+    .p2{
+        font-family: cursive;
+        font-size: 4vh;
+        border-left:3px solid black;
+        border-bottom: 3px solid black;
+        text-align: center;
+        color: white;
+        min-height: 30px;
+      }
+
+      .boton_personal{
+        text-decoration: none;
+        padding: 1vh;
+        font-size: 2vh;
+        color: #ffffff;
+        background-color: #1883ba;
+        border-radius: 6px;
+        border: 2px solid #0016b0;
+      }
+      #sesion{
+        color:white;
+    }
+    #sesion1{
+        color:white;
+    }
+    #sesion-cerrar{
+        color:white;
+    }
+    #registro{
+        color: white;
+    }
+    #anfitrion{
+      color: white;
+    }
+    #max_jug{
+      color: white;
+    }
+    #botones{
+      color: white;
+    }
+    #anfitriones{
+      color: white;
+      font-family: cursive;
+    }
+    #numero-jugadores{
+      color: white;
+      font-family: cursive;
+    }
+    #unirse{
+      color: white;
+      font-family: cursive;
+    }
+    #buttons{
+      color: white;
+    }
+    

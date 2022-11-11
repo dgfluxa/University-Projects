@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    box-sizing: border-box;
+    font-size: 100%;
+  }
+  
+  body {
+    background-color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .navbar {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: GoldenRod;
+    padding: 1.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    height: 10vh;
+  }
+  
+  .navbar-logo,
+  .navbar-logo:link,
+  .navbar-logo:visited {
+    margin-right: auto;
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .navbar-logo{
+    transition-duration: 0.2s;
+    font-weight: bold;
+    }
+    .navbar-logo:hover{
+    font-size: 1.55rem;
+    }
+  
+  .navbar-title:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-items {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar-item:not(:last-child) {
+    margin-right: 2rem;
+  }
+  
+  .navbar-link,
+  .navbar-link:link,
+  .navbar-link:visited {
+    text-decoration: none;
+    color: #faf9f9;
+    display: inline-block;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid transparent;
+    font-size: 1rem;
+  }
+  
+  .navbar-link:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-link.navbar-link--active {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #faf9f9;
+  }
+
+
+
+.container::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+    display: none;  /* Ocultar scroll */
+}
+
+  /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.container::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+/* Cambiamos el fondo cuando esté en active */
+.container::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+.container::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+}
+/* Cambiamos el fondo cuando esté en active o hover */
+.container::-webkit-scrollbar-track:hover,
+.container::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
+
+
+  
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(8, 2fr);
+    grid-template-rows: repeat(8, 15vh);
+    border: none;
+    margin: auto;
+  }
+
+  .columna-izq {
+    grid-column: 1;
+    grid-row: 1;
+    background-color:black;
+    color: white;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 3vh;
+    margin: auto;
+  }
+
+  #description{
+    color:white;
+    border-radius:2vh;
+    border:4px solid white;
+
+  }
+
+  .imgRedonda {
+    width:auto;
+    height:auto;
+    border-radius: 13vh;
+    border:10px solid rgb(181, 194, 0);}
+
+ #columna-partidas-g {
+    grid-column-start: 3;
+    grid-column-end: 8;
+    grid-row-start: 2;
+    grid-row-end: 5;
+    background-color: goldenrod;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    min-height: 60vh;
+    font-size: 3vh;
+    min-width: fit-content;
+ }
+
+ #columna-partidas-p {
+    grid-column-start: 3;
+    grid-column-end: 8;
+    grid-row-start: 6;
+    grid-row-end: 8;
+    background-color: goldenrod;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    min-height: 60vh;
+    font-size: 3vh;
+    border: black 3px solid;
+    min-width: fit-content;
+}
+  
+h3.perfil{
+    background: #d8e706;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+}
+
+h4.partidas{
+    background: rgb(179, 135, 26);
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    color: black;
+}
+h4.nivel{
+    background: rgb(14, 13, 13);
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    color:white;
+}
+
+img.ganadas {
+    float: left;
+    width:150px;
+    height:150px;
+    border-radius:90px;
+    border:10px solid rgb(181, 194, 0);
+  }
+  #sesion{
+    color:white;
+}
+#sesion1{
+    color:white;
+}
+#sesion-cerrar{
+    color:white;
+}
+#registro{
+    color: white;
+}
+#logout{
+  color:white;
+  cursor: pointer;
+  cursor: hand;
+}

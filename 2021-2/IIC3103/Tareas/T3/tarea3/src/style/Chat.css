@@ -1,0 +1,12 @@
+.message {
+    text-align: left;
+    padding: 10px
+}
+
+.chatbox {
+    width: 70%;
+    height: 350px;
+    overflow: auto;
+    margin: auto;
+    border-style: ridge
+}

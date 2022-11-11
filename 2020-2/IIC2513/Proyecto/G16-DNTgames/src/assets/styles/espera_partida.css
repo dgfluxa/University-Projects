@@ -1,0 +1,358 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    box-sizing: border-box;
+    font-size: 100%;
+  }
+  
+  body {
+    background-color: rgb(5, 4, 0);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    background-image: url("https://localhost:1337/img/pi.PNG");
+  }
+  
+  .navbar {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: GoldenRod;
+    padding: 1.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    height: 10vh;
+  }
+  
+  .navbar-logo,
+  .navbar-logo:link,
+  .navbar-logo:visited {
+    margin-right: auto;
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .navbar-logo{
+    transition-duration: 0.2s;
+    font-weight: bold;
+    }
+    .navbar-logo:hover{
+    font-size: 1.55rem;
+    }
+  
+  .navbar-title:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-items {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar-item:not(:last-child) {
+    margin-right: 2rem;
+  }
+  
+  .navbar-link,
+  .navbar-link:link,
+  .navbar-link:visited {
+    text-decoration: none;
+    color: #faf9f9;
+    display: inline-block;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid transparent;
+    font-size: 1rem;
+  }
+  
+  .navbar-link:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-link.navbar-link--active {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #faf9f9;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(19, 1fr);
+    grid-template-rows: repeat(5, 18vh);
+  }
+  .titulo{
+    grid-column-start: 1;
+    grid-column-end: 14;
+    grid-row: 1;
+    background-color:black;
+    top: 80%;
+    color: white;
+    font-size: 7vh;
+    font-family: cursive;
+  }
+  .foto{
+      filter: invert(100%);
+      width: 10vh;
+      height: 10vh;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+
+  }
+  .f14{
+    filter: invert(100%);
+      width: 7vh;
+      height: 7vh;
+      float: left;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      grid-column: 13;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  .f15{
+    filter: invert(100%);
+      width: 7vh;
+      height: 7vh;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      grid-column: 13;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  .f16{
+    filter: invert(100%);
+      width: 8vh;
+      height: 8vh;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      grid-column: 14;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  .f17{
+    filter: invert(100%);
+      width: 7vh;
+      height: 7vh;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      grid-column: 15;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  .f18{
+    filter: invert(100%);
+      width: 8vh;
+      height: 8vh;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      grid-column: 16;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  .f19{
+    filter: invert(100%);
+      width: 7vh;
+      height: 7vh;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      grid-column: 17;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  .f20{
+    filter: invert(100%);
+      width: 8vh;
+      height: 8vh;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      grid-column: 18;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  .f21{
+    filter: invert(100%);
+      width: 7vh;
+      height: 7Vh;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      grid-column: 19;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  .f22{
+    filter: invert(100%);
+      width: 8vh;
+      height: 8vh;
+      position: relative;
+      float: left;
+      top: 8%;
+      grid-row: 1;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  .f23{
+    filter: invert(100%);
+      width: 8vh;
+      height: 8vh;
+      position: relative;
+      top: 8%;
+      grid-row: 1;
+      grid-column: 20;
+      -webkit-animation: 3s rotate linear infinite;
+      animation: 3s rotate linear infinite;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 100px;
+  }
+  
+  @keyframes rotate {from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}}
+@-webkit-keyframes rotate {from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(360deg);}}
+.imgr{
+    -webkit-animation: 3s rotate linear infinite;
+    animation: 3s rotate linear infinite;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+  
+
+
+    .jugadores-listos{
+        grid-column-start: 2;
+        grid-column-end: 10;
+        grid-row: 2;
+        grid-row-end: 5;
+        background: goldenrod;
+        border: 10px solid white;
+        border-radius: 10px;
+        min-height: fit-content;
+    }
+    .jugador{
+        font-family: cursive;
+        font-size: 6vh;
+        color: black;
+        text-decoration: underline;
+      }
+      .j{
+        font-family: cursive;
+        font-size: 5vh;
+        text-align: center;
+        background-color: goldenrod;
+        border-bottom-left-radius: 10px;
+        color: white;
+      }
+      .tiempo{
+        grid-column-start: 12;
+        grid-column-end: 19;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        background: goldenrod;
+        border-radius: 10px;
+        border: 8px solid white;
+        height: fit-content;
+      }
+      .boton_personal{
+        margin-top: 8vh;
+        grid-row: 4;
+        grid-column-start: 12;
+        grid-column-end: 19;
+        text-align: center;
+        font-weight: 900;
+        font-size: 6vh;
+        color: white;
+        background: red;
+        border-radius: 6px;
+        border: 3px solid white;
+        font-family: cursive;
+        height: 10vh;
+        text-decoration: none;
+        transition-duration: 0.2s;
+      }
+
+      .boton_personal:hover{
+        background: tomato;
+      }
+      #sesion{
+        color:white;
+    }
+    #sesion1{
+        color:white;
+    }
+    #sesion-cerrar{
+        color:white;
+    }
+    #registro{
+        color: white;
+    }
+    #time_espera{
+      color: white;
+    }
+    #ID{
+      color: white;
+    }
+    #gamer0{
+      color: white;
+    }
+    #gamer1{
+      color: white;
+    }
+    #gamer2{
+      color: white;
+    }
+    #gamer3{
+      color: white;
+    }
+    #gamer4{
+      color: white;
+    }

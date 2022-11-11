@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DNTgames | Registro</title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/registro.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-logo" href="../../index.html">DNTgames</a>
+      <ul class="navbar-items">
+        <li class="navbar-item">
+          <a href="../../index.html#nosotros" class="navbar-link navbar-link">Nosotros</a>
+        </li>
+        <li class="navbar-item" id="sesion1">
+        </li>
+        
+        <li class="navbar-item" id="sesion">
+        </li>
+        <li class="navbar-item" id="perfil">
+        </li>
+        <li class="navbar-item" id="sesion-cerrar">
+        </li>
+        <li class="navbar-item" id="registro">
+        </li>
+      </ul>
+  </nav>
+  <div class="wrapper">
+    <div id="columna-izq">
+      <img id="icon" src="../assets/imgs/Moneda.PNG" alt="monedas">
+      <img id="icon" src="../assets/imgs/Moneda.PNG" alt="monedas">
+      <img id="icon" src="../assets/imgs/obrero.PNG" alt="monedas">
+    </div>
+    <div id="columna-der">
+      <img id="icon" src="../assets/imgs/obrero.PNG" alt="monedas">
+      <img id="icon" src="../assets/imgs/Moneda.PNG" alt="monedas">
+      <img id="icon" src="../assets/imgs/Moneda.PNG" alt="monedas">
+    </div>
+  </div>
+  <section class="content">
+    <div class="login">
+      <h1>¡Registrate!</h1>
+        <form   >
+          <input type="text" id="username" placeholder="Username" required="required" />
+            <input type="password" id="p1" placeholder="Password" required="required" />
+            <input type="password" id="p2" placeholder="Password again" required="required" />
+        </form>
+        <button id="API"  class="btn btn-primary btn-block btn-large" >Listo</button> <!-- Cambiar type a submit prox entrega -->
+        <div id="mensaje"></div>
+
+    </div>
+  </section>    
+  <script src="../assets/scripts/registro.js"></script>
+  </body>
+</html>

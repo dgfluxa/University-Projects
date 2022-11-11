@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    box-sizing: border-box;
+    font-size: 100%;
+  }
+  
+  body {
+    background-color: rgb(5, 4, 0);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .navbar {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: GoldenRod;
+    padding: 1.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    height: 10vh;
+  }
+  
+  .navbar-logo,
+  .navbar-logo:link,
+  .navbar-logo:visited {
+    margin-right: auto;
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .navbar-logo{
+    transition-duration: 0.2s;
+    font-weight: bold;
+    }
+    .navbar-logo:hover{
+    font-size: 1.55rem;
+    }
+  
+  .navbar-title:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-items {
+    list-style: none;
+    display: flex;
+  }
+  #N{
+    color: white;
+  }
+  #U{
+    color: white;
+  }
+  #R{
+    color: white;
+  }
+  #P{
+    color: white;
+  }
+  
+  .navbar-item:not(:last-child) {
+    margin-right: 2rem;
+  }
+  
+  .navbar-link,
+  .navbar-link:link,
+  .navbar-link:visited {
+    text-decoration: none;
+    color: #faf9f9;
+    display: inline-block;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid transparent;
+    font-size: 1rem;
+  }
+  
+  .navbar-link:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-link.navbar-link--active {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #faf9f9;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(19, 1fr);
+    grid-template-rows: repeat(5, 23vh);
+  }
+
+  .columna-izq {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background-color:black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 3vh;
+    vertical-align: middle;
+  }
+  .cuadro{
+    color: white;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background-color: black;
+    font-size: 3vh;
+    font-family: cursive;
+    position: static;
+    border-radius:5vh;
+    border:8px solid white;
+    height: fit-content;
+  }
+
+  .titulo{
+    grid-column-start: 2;
+    grid-column-end: 20;
+    grid-row: 1;
+    background-color:black;
+    top: 80%;
+    text-align: center;
+  }
+  .guerra{
+    float: right;
+    filter: invert(100%);
+    width:20vh;
+    height:20vh;
+    border-radius:15vh;
+    border:10px solid black;
+  }
+
+  .jugadores-h {
+    grid-column-start: 5;
+    grid-column-end: 20;
+    grid-row-start: 2;
+    grid-row-end: 8;
+    background-color: goldenrod;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: goldenrod;
+    min-height: 83vh;
+    font-size: 3vh;
+    border-radius: 20px;
+    width: fit-content;
+    height: fit-content;
+ }
+ .jugador{
+  font-family: cursive;
+  font-size: 5vh;
+  color: black;
+  text-decoration: underline;
+
+}
+.j{
+  font-family: cursive;
+  font-size: 5vh;
+  text-align: center;
+  background-color: goldenrod;
+  border-bottom-left-radius: 10px;
+}
+
+.jugador2{
+  font-family: cursive;
+  font-size: 5vh;
+  border-left:8px solid black;
+  color: black;
+  text-decoration: underline;
+  text-align: center;
+}
+.j2{
+  font-family: cursive;
+  font-size: 5vh;
+  border-left:8px solid black;
+  text-align: center;
+}
+
+  h3{
+      color: white;
+      font-family: monospace;
+      font-size: 8vh;
+      text-align: left;
+  }
+
+  #foto{
+    filter: invert(100%);
+    width:20vh;
+    height:20vh;
+    border-radius:15vh;
+    border:10px solid black;
+  }
+
+  #div-foto{
+      grid-row: 1;
+      grid-column: 1;
+      background: black;
+      text-align: center;
+  }
+  #logout{
+    color:white;
+    cursor: pointer;
+    cursor: hand;
+}
+
+
+
+  

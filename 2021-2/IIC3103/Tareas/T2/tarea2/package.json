@@ -1,0 +1,32 @@
+{
+  "name": "tarea-2-dgfluxa",
+  "version": "1.0.0",
+  "description": "[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=5700739&assignment_repo_type=AssignmentRepo)",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-router": "^10.1.1",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5",
+    "sequelize-auto": "^0.8.4",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IIC3103/tarea-2-dgfluxa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IIC3103/tarea-2-dgfluxa/issues"
+  },
+  "homepage": "https://github.com/IIC3103/tarea-2-dgfluxa#readme"
+}

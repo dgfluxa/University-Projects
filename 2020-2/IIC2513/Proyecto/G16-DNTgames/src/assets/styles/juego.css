@@ -1,0 +1,758 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+  
+*,
+*::before,
+*::after {
+box-sizing: inherit;
+}
+
+html {
+box-sizing: border-box;
+font-size: 100%;
+}
+
+body {
+font-family: 'Open Sans', sans-serif;
+font-weight: 400;
+line-height: 1.6;
+align-content: center;
+}
+
+.navbar {
+font-size: 1.5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: GoldenRod;
+padding: 1.5rem;
+box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+height: 10vh;
+}
+
+.navbar-logo,
+.navbar-logo:link,
+.navbar-logo:visited {
+margin-right: auto;
+color: #000000;
+text-decoration: none;
+}
+
+.navbar-logo{
+transition-duration: 0.2s;
+font-weight: bold;
+}
+.navbar-logo:hover{
+font-size: 1.55rem;
+}
+
+.navbar-title:hover {
+color: #ccc;
+transform: scale(1.1);
+}
+
+.navbar-items {
+list-style: none;
+display: flex;
+}
+
+.navbar-item:not(:last-child) {
+margin-right: 2rem;
+}
+
+.navbar-link,
+.navbar-link:link,
+.navbar-link:visited {
+text-decoration: none;
+color: #faf9f9;
+display: inline-block;
+padding-bottom: 0.2rem;
+border-bottom: 1px solid transparent;
+font-size: 1rem;
+}
+
+.navbar-link:hover {
+color: #ccc;
+transform: scale(1.1);
+}
+
+.navbar-link.navbar-link--active {
+padding-bottom: 1px;
+border-bottom: 1px solid #faf9f9;
+}
+
+#wrapper {
+display: grid;
+grid-template-columns: repeat(20, 1fr);
+grid-auto-rows: minmax(10vh, auto);
+background-color: black;
+}
+
+#wrapper_dis {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: minmax(10vh, auto);
+    background-color: black;
+    pointer-events: none;
+    }
+      
+#columna-izq {
+grid-column: 1/5;
+grid-row: 1/10;
+background-color:black;
+color: white;
+flex-direction: column;
+text-align: center;
+font-size: 3vh;
+padding: 10px;
+display: block;
+width: auto;
+}
+
+
+#juego {
+grid-column: 5/21;
+grid-row: 1/10;
+border: 3px solid black;
+background-color:goldenrod;
+color: white;
+flex-direction: column;
+text-align: center;
+font-size: 17px;
+z-index: 1;
+position: relative;
+}
+
+#mapa {
+grid-column: 5/17;
+grid-row: 1/9;
+display: grid;
+border: 3px solid black;
+background-color:goldenrod;
+grid-template-columns: repeat(25, 1fr);
+grid-template-rows: repeat(15, 1fr);
+background-color: darkkhaki;
+/*background-image: url("../img/mapa_juego_4.jpg");
+background-repeat: no-repeat; 
+background-size: cover;*/
+z-index: 2;
+margin: 3vh;
+}
+
+#mapa_dis {
+    grid-column: 5/17;
+    grid-row: 1/9;
+    display: grid;
+    border: 3px solid black;
+    background-color:goldenrod;
+    grid-template-columns: repeat(25, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    background-color: darkkhaki;
+    /*background-image: url("../img/mapa_juego_4.jpg");
+    background-repeat: no-repeat; 
+    background-size: cover;*/
+    z-index: 2;
+    margin: 3vh;
+    pointer-events: none;
+    }
+
+.texto_lugar{
+    grid-column: 10/18;
+    grid-row: 8/10;
+    background-color: gray;
+    z-index: 8;
+    font-size: 4vh;
+    text-align: center;
+    transition-duration: 0.4;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.9;
+}
+
+
+#columna_der{
+    grid-column: 17/21;
+    grid-row: 1/9;
+    background-color:black;
+    color: white;
+    flex-direction: column;
+    text-align: center;
+    font-size: 2.5vh;
+    padding: 10px;
+    display: block;
+    width: auto;
+    z-index: 2;
+    margin: 3vh;
+}
+
+#columna_der_dis{
+    grid-column: 17/21;
+    grid-row: 1/9;
+    background-color:black;
+    color: white;
+    flex-direction: column;
+    text-align: center;
+    font-size: 2.5vh;
+    padding: 10px;
+    display: block;
+    width: auto;
+    z-index: 2;
+    margin: 3vh;
+    pointer-events: none;
+}
+
+.button{
+    background-color: blue;
+    opacity: 30%;
+    border: 1px solid black;
+    visibility: hidden;
+}
+.button:hover{
+background-color: red;
+}
+.button:focus{
+background-color: red;
+}
+
+.desconocido{
+background-color: black;
+opacity: 100%;
+z-index: 3;
+}
+
+.imgRedonda {
+width:15vh;
+height:15vh;
+border-radius:140px;
+border:1vh solid green;
+transition-duration: 0.1s;}
+
+.imgRedonda:hover {
+    border:0.5vh solid green;
+}
+
+.lugar_text{
+    font-size: 2.5vh;
+
+}
+
+.lugar_user{
+    color: goldenrod;
+}
+
+#recursos{
+    margin-top: 10px;
+    display: inline-flex;
+    gap: 20px;
+    font-size: 2vh;
+}
+
+#coin {
+    width:6vh;
+    height:6vh;
+    border-radius:140px;
+    background-color: gold;
+    padding: 5px;
+}
+
+#log {
+    width:6vh;
+    height:6vh;
+    border-radius:140px;
+    background-color: saddlebrown;
+    padding: 5px;
+}
+
+#cont_vida{
+    margin-top: 10px;
+    box-sizing:border-box;
+    font-size: 2vh;
+}
+
+#barra_vida {
+    width: 100%; /* Full width */
+    background-color: darkslategray; /* Grey background */
+}
+  
+#vida_actual {
+font-size: 2vh;
+text-align: right; /* Right-align text */
+padding-top: 1px; /* Add top padding */
+padding-bottom: 1px; /* Add bottom padding */
+color: white; /* White text color */
+width: 0%; 
+background-color: #f44336;
+padding-right: 10px;
+}
+
+#cont_pob{
+    margin-top: 10px;
+    box-sizing:border-box;
+    font-size: 2vh;
+}
+
+#barra_pob {
+    width: 100%; /* Full width */
+    background-color: darkslategray; /* Grey background */
+}
+  
+#pob_actual {
+font-size: 2vh;
+text-align: right; /* Right-align text */
+padding-top: 1px; /* Add top padding */
+padding-bottom: 1px; /* Add bottom padding */
+color: white; /* White text color */
+width: 0%; 
+background-color: #238a16;
+padding-right: 10px;
+}
+
+
+.icono_unidad {
+    width:3vh;
+    height:3vh;
+    border-radius:140px;
+    padding: 1px;
+}
+
+#doctor{
+    background-color: red;
+}
+
+#guerrero{
+    background-color: gray;
+}
+
+#obrero{
+    background-color: gold;
+}
+
+.unidad {
+    font-size: 2vh;
+    display: block;
+}
+
+.nombre_un{
+    display: inline;
+}
+
+.ejercito{
+    margin-top: 5px;
+    font-size: 2.5vh;
+}
+.stats{
+    margin-top: 5px;
+    font-size: 2.5vh;
+}
+
+#boton_terminar{
+    background-color: red;
+    position: absolute;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 1vh;
+    bottom: 0;
+    text-decoration: none;
+    color: white;
+    padding: 1vh 1vh;
+    font-size: 25px;
+    left: 0;
+    transition-duration: 0.2s;
+    width: 100%;
+    cursor: pointer;
+}
+
+#boton_terminar:hover {
+    background-color: #f44336;
+}
+
+#boton_modificar{
+    background-color: blue;
+    position: absolute;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 1vh;
+    bottom: 0;
+    text-decoration: none;
+    color: white;
+    padding: 1vh 1vh;
+    font-size: 25px;
+    left: 0;
+    transition-duration: 0.2s;
+    width: 50%;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+#boton_terminar:hover {
+    background-color: lightskyblue;
+}
+
+#boton_simular{
+    background-color: red;
+    position: absolute;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 1vh;
+    bottom: 0;
+    text-decoration: none;
+    color: white;
+    padding: 1vh 1vh;
+    font-size: 25px;
+    left: 50%;
+    transition-duration: 0.2s;
+    width: 50%;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+#boton_terminar:hover {
+    background-color: #f44336;
+}
+
+.boton_abandonar{
+    background-color: green;
+    position: absolute;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 1vh;
+    bottom: 0;
+    text-decoration: none;
+    color: white;
+    padding: 1vh 1vh;
+    font-size: 25px;
+    right: 0;
+    transition-duration: 0.2s;
+    width: 30%;
+}
+.boton_abandonar:hover {
+    background-color: rgb(76, 151, 76);
+}
+
+.lugar{  
+    z-index: 4;
+    margin: auto;
+    color: black;
+    font-size: 1vh;
+}
+
+
+.icono_lugar{
+    height: 3vh;
+    width: 3vh;
+    vertical-align: middle;
+    transition-duration: 0.2;
+}
+
+.icono_lugar:hover{
+    height: 4vh;
+    width: 4vh;
+}
+
+
+
+#pueblo{
+    background-color: gray;
+}
+
+#puebloJ1{
+    background-color: green;
+}
+#puebloJ2{
+    background-color: blue;
+}
+#puebloJ3{
+    background-color: red;
+}
+#puebloJ4{
+    background-color: yellow;
+}
+
+.icono_ejercito{
+    height: 2vh;
+    width: 2vh;
+    border-radius: 140px;
+    vertical-align: middle;
+    background-color: green;
+    transition-duration: 0.2;
+}
+
+.icono_ejercito:hover{
+    height: 3vh;
+    width: 3vh;
+}
+
+.icono_ejercito2{
+    height: 2vh;
+    width: 2vh;
+    border-radius: 140px;
+    vertical-align: middle;
+    background-color: blue;
+    transition-duration: 0.2;
+}
+
+.icono_ejercito2:hover{
+    height: 3vh;
+    width: 3vh;
+}
+
+
+.boton_accion{
+    margin-top: 1vh;
+    background-color: gray;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 1vh;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    padding: 0.3vh;
+    font-size: 2vh;
+    display: block;
+    margin-bottom: 1vh;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.boton_accion:hover {
+    background-color: #f44336;
+}
+
+#interactuar_dis{
+    pointer-events: none;
+}
+
+#mover_dis{
+    pointer-events: none;
+}
+
+#conquistar_dis{
+    pointer-events: none;
+}
+#comprar_guerrero_dis{
+    pointer-events: none;
+}
+#comprar_doctor_dis{
+    pointer-events: none;
+}
+#comprar_obrero_dis{
+    pointer-events: none;
+}
+
+.boton_comprar{
+    margin-top: 1vh;
+    background-color: gold;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 1vh;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    padding: 0.3vh;
+    font-size: 2vh;
+    display: block;
+    margin-bottom: 1vh;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.boton_comprar:hover {
+    background-color: goldenrod;
+}
+
+.ranking{
+    font-size: 2vh;
+}
+
+#j1{
+    color: green;
+}
+#j2{
+    color: blue;
+}
+#j3{
+    color: red;
+}
+#j4{
+    color: yellow;
+}
+
+#sesion{
+    color:white;
+}
+#sesion1{
+    color:white;
+}
+#sesion-cerrar{
+    color:white;
+}
+#registro{
+    color: white;
+}
+
+.tooltip{
+    position: absolute;
+    z-index: 10;
+    background-color: gray;
+    padding: 1vh;
+    border-radius: 1vh;
+    color: white;
+}
+
+#mensaje_resumen{
+    position: absolute;
+    margin: auto;
+    height: 90%;
+    min-height: fit-content;
+    width: 50%;
+    left: 25%;
+    right: 25%;
+    background-color: lightgray;
+    z-index: 10;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 5%;
+    align-content: center;
+    visibility: hidden;
+    padding: 1vh;
+}
+
+#mensaje_resultado{
+    position: absolute;
+    margin: auto;
+    height: 90%;
+    min-height: fit-content;
+    width: 50%;
+    left: 25%;
+    right: 25%;
+    background-color: lightgray;
+    z-index: 10;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 5%;
+    align-content: center;
+    visibility: hidden;
+    padding: 1vh;
+}
+
+#boton_cerrar{
+    background-color: red;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 2vh;
+    bottom: 0;
+    text-decoration: none;
+    color: white;
+    padding: 1vh 1vh;
+    font-size: 25px;
+    transition-duration: 0.2s;
+    width: 96%;
+    cursor: pointer;
+    left: 0;
+    right: 0;
+    margin: 2%;
+}
+
+#boton_cerrar:hover {
+    background-color: #f44336;
+}
+
+#boton_cerrar_sim{
+    background-color: red;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 2vh;
+    bottom: 0;
+    text-decoration: none;
+    color: white;
+    padding: 1vh 1vh;
+    font-size: 25px;
+    transition-duration: 0.2s;
+    width: 96%;
+    cursor: pointer;
+    left: 0;
+    right: 0;
+    margin: 2%;
+}
+
+#boton_cerrar_sim:hover {
+    background-color: #f44336;
+}
+
+#boton_cerrar_fin{
+    background-color: red;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 2vh;
+    bottom: 0;
+    text-decoration: none;
+    color: white;
+    padding: 1vh 1vh;
+    font-size: 25px;
+    transition-duration: 0.2s;
+    width: 96%;
+    cursor: pointer;
+    left: 0;
+    right: 0;
+    margin: 2%;
+}
+
+#boton_cerrar_fin:hover {
+    background-color: #f44336;
+}
+
+#lista_resumen{
+    text-align: left;
+}
+
+#lista_resultado{
+    text-align: left;
+}
+
+#lista_fin{
+    text-align: left;
+}
+
+#mensaje_fin{
+    position: absolute;
+    margin: auto;
+    height: 90%;
+    min-height: fit-content;
+    width: 50%;
+    left: 25%;
+    right: 25%;
+    background-color: lightgray;
+    z-index: 10;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 5%;
+    align-content: center;
+    visibility: hidden;
+    padding: 1vh;
+}
+
+#boton_recargar{
+    background-color: darkgreen;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 2vh;
+    bottom: 0;
+    text-decoration: none;
+    color: white;
+    padding: 1vh 1vh;
+    font-size: 25px;
+    transition-duration: 0.2s;
+    width: 96%;
+    cursor: pointer;
+    left: 0;
+    right: 0;
+    margin: 2%;
+}
+
+#boton_recargar:hover {
+    background-color: green;
+}

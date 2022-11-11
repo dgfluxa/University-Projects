@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DNTgames | Registro</title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/iniciar_sesion.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-logo" href="../../index.html">DNTgames</a>
+      <ul class="navbar-items">
+        <li class="navbar-item">
+          <a href="../../index.html#nosotros" class="navbar-link navbar-link" >Nosotros</a>
+        </li>
+        <li class="navbar-item" id="sesion1">
+        </li>
+        <li class="navbar-item" id="sesion" >
+          <a href="iniciar_sesion.html" class="navbar-link">Iniciar Sesión</a>
+        </li>
+        <li class="navbar-item" id="perfil">
+        </li>
+        <li class="navbar-item" id="sesion-cerrar">
+        </li>
+        <li class="navbar-item" id="registro">
+          <a href="registro.html" class="navbar-link">Registrarse</a>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="wrapper">
+      <div id="columna-izq">
+       <img id="icon" src="../assets/imgs/Moneda.PNG" alt="monedas">
+       <img id="icon" src="../assets/imgs/Moneda.PNG" alt="monedas">
+        <img id="icon" src="../assets/imgs/obrero.PNG" alt="monedas">
+     </div>
+     <div id="columna-der">
+       <img id="icon" src="../assets/imgs/obrero.PNG" alt="monedas">
+       <img id="icon" src="../assets/imgs/Moneda.PNG" alt="monedas">
+       <img id="icon" src="../assets/imgs/Moneda.PNG" alt="monedas">
+      </div>
+   </div>
+   <section class="content">
+    <div class="login">
+     <h1>Iniciar sesión</h1>
+       <form>
+          <input type="text" id="username" placeholder="Username" required="required" />
+          <input type="password" id="p1" placeholder="Password" required="required" />
+          <!-- Cambiar type a submit prox entrega -->
+        </form>
+        <button id="API" class="btn btn-primary btn-block btn-large">Listo</button> 
+      <a href="registro.html" id="registro2">¿No tienes una cuenta? Registrate aquí</a>
+      <div id="mensaje"></div>
+      
+    </div>
+ </section>
+ <script src="../assets/scripts/iniciar_sesion.js"></script>
+  </body>
+</html>

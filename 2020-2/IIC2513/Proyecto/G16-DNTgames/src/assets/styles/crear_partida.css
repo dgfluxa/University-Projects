@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    box-sizing: border-box;
+    font-size: 100%;
+  }
+  
+  body {
+    background-color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .navbar {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: GoldenRod;
+    padding: 1.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    height: 10vh;
+  }
+  
+  .navbar-logo,
+  .navbar-logo:link,
+  .navbar-logo:visited {
+    margin-right: auto;
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .navbar-logo{
+    transition-duration: 0.2s;
+    font-weight: bold;
+    }
+    .navbar-logo:hover{
+    font-size: 1.55rem;
+    }
+  
+  .navbar-title:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-items {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar-item:not(:last-child) {
+    margin-right: 2rem;
+  }
+  
+  .navbar-link,
+  .navbar-link:link,
+  .navbar-link:visited {
+    text-decoration: none;
+    color: #faf9f9;
+    display: inline-block;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid transparent;
+    font-size: 1rem;
+  }
+  
+  .navbar-link:hover {
+    color: #ccc;
+    transform: scale(1.1);
+  }
+  
+  .navbar-link.navbar-link--active {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #faf9f9;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 18vh);
+  }
+
+  .imgRedonda {
+    width:250px;
+    height:250px;
+    border-radius:140px;
+    border:10px solid #1883ba;}
+
+  h4.mapas{
+      background: rgb(179, 135, 26);
+      border: none;
+      border-radius: 20px;
+      text-align: center;
+      color: black;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .columna-izq {
+    grid-column: 1;
+    grid-row: 1;
+    background-color:black;
+    color: white;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 3vh;
+  }
+
+  h2{
+    color: white;
+    font-family: cursive;
+    font-size: 40pt;
+  }
+
+  .planea{
+    grid-column-start: 2;
+    grid-column-end: 8;
+    grid-row: 1;
+    background-color:black;
+  }
+
+  #columna-form {
+    grid-column-start: 3;
+    grid-column-end: 8;
+    grid-row-start: 2;
+    grid-row-end: 8;
+    background-color: black;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    font-size: 3vh;
+    margin-right: auto;
+ }
+
+ #mapas {
+   grid-row: 2;
+   margin-right: auto;
+   border: black 3px solid;
+ }
+
+ #jugadores {
+  grid-row: 3;
+  background: goldenrod;
+  border: black 3px solid;
+  border-radius: 20px;
+  }
+
+  #partidas {
+    grid-row-start: 4;
+    grid-row-end: 6;
+    background: goldenrod;
+    border-radius: 20px;
+    border: black 3px solid;
+  }
+
+  #tiempos {
+ 
+    background: goldenrod;
+    border: black 3px solid;
+    border-radius: 20px;
+  }
+
+ .checkeable input {
+    display: none;
+  }
+  .checkeable img {
+    width: 160px;
+    height: 160px;
+    border: 8px solid transparent;
+    border-radius: 10px;
+  }
+  .checkeable input {
+    display: none;
+  }
+  .checkeable input:checked  + img {
+    border-color: #1883ba;
+  }
+
+  .mapas-items{
+    list-style: none;
+    display: flex;
+    margin-right: auto;
+  }
+
+  input.n-jugadores{
+    width: 800px;
+    height: 50px;
+    color: white;
+    background-color: black;
+    font-size: 30px;
+    font-family: cursive;
+    border: 3px solid white;
+    border-radius: 10px;
+    text-align: center;
+    font-variant-numeric: normal;
+  }
+
+  select.tipo-partida{
+    width: 800px;
+    height: 50px;
+    color: white;
+    background-color: black;
+    text-align: right;
+    font-size: 30px;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-family: cursive;
+  }
+  select.turnos-partida{
+    width: 800px;
+    height: 50px;
+    color: #ffffff;
+    background-color: black;
+    text-align: right;
+    font-size: 30px;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-family: cursive;
+  }
+  input.opciones{
+    width: auto;
+    height: auto;
+    color:white;
+    text-align: center;
+    font-size: 30px;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-family: cursive;
+  }
+
+  .boton_personal{
+    text-decoration: none;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 30px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+    display: block;
+    align-self: center;
+  }
+  #sesion{
+    color:white;
+}
+#sesion1{
+    color:white;
+}
+#sesion-cerrar{
+    color:white;
+}
+#registro{
+    color: white;
+}
+#API{
+  color:white;
+  cursor: pointer;
+  cursor: hand;
+}
+
+
+
+

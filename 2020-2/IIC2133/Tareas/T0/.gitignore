@@ -1,0 +1,5 @@
+*.txt
+!tests/test.txt
+!solutions/test.txt
+python/__pycache__/
+obj/

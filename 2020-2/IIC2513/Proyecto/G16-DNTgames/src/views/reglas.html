@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../assets/styles/reglas.css" />
+    <title>DNTgames | Reglas</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-logo" href="../../index.html">DNTgames</a>
+      <ul class="navbar-items">
+        <li class="navbar-item">
+          <a href="../../index.html#nosotros" class="navbar-link navbar-link">Nosotros</a>
+        </li>
+        <li class="navbar-item" id="sesion1">
+        </li>
+        
+        <li class="navbar-item" id="sesion">
+        </li>
+        <li class="navbar-item" id="perfil">
+        </li>
+        <li class="navbar-item" id="sesion-cerrar">
+        </li>
+        <li class="navbar-item" id="registro">
+        </li>
+      </ul>
+    </nav>
+    <div class="wrapper">
+      <div id="columna-izq">
+        <h4>Novedades:</h4>
+        <a href='novedades.html'><img id="icon" src="../assets/imgs/megaphone.svg" alt="Novedades"></a>
+        <h4>Reglas:</h4>
+        <a href='reglas.html'><img id="icon" src="../assets/imgs/list.svg" alt="Reglas"></a>
+        <h4>Mejores Jugadores:</h4>
+        <a href='mejores_jugadores.html'><img id="icon" src="../assets/imgs/podium.svg" alt="Mejores Jugadores"></a>
+        <h4>Tu opinión nos importa:</h4>
+        <div class="rating rating2"><!--
+        --><a href="#5" title="Give 5 stars">★</a><!--
+        --><a href="#4" title="Give 4 stars">★</a><!--
+        --><a href="#3" title="Give 3 stars">★</a><!--
+        --><a href="#2" title="Give 2 stars">★</a><!--
+        --><a href="#1" title="Give 1 star">★</a>
+        </div>
+      </div>
+      <div id="reglas">
+        <h1>Reglas del juego</h1>
+      </div>
+      <div id="imagen">
+        <a href='seleccion_partida.html' class='button'>¡Jugar Ahora!</a>
+      </div>
+      <div id="rules">
+
+        <h2>Objetivo: </h2>
+        <div class="objetivo">
+          El objetivo del juego es poseer la mayor cantidad del mapa conquistado cuando se terminen los turnos determinados al crear la partida. En caso de que exista un empate, ganará el con más dinero y si también empataran en esto ganará quien haya creado la partida.
+        </div>
+        <h2> Reglas generales:  </h2>
+        <p class="texto_bold">El juego consiste en un juego de aventuras multijugador donde los jugadores tendrán que administrar un ejército  y recursos para lograr conquistar el mayor número  de poblados dentro del mapa antes de que se un número determinado de turnos. El ejército del jugador podrá ir mejorando al reclutar nuevos integrantes dentro de los poblados gastando monedas o mediante accesorios. Además tendrá que procurar triunfar en enfrentamientos con otros jugadores (mediante invasiones a poblados) y sobrepasar los peligros que pueden encontrarse dentro del mapa.</p>
+        <p class="texto_bold"> Tu ejercito contar'a con los siguentes personajes: </p>
+        <li class = "regla"> Guerrero: Unidades del ejército que destacan por su poder de ataque. Son esenciales para el enfrentamiento con otros jugadores y otras amenazas del juego. Mientras más guerreros tenga un ejercito, mayores serán sus probabilidades de triunfar en un enfrentamiento.
+        </li>
+        <li class = "regla"> Obreros: Son aquellos personajes del ejército que están encargados de la recolección de recursos. Mientras más obreros tenga un ejército, más recursos obtendrá cada vez que realice la acción de recolectar. La cantidad de monedas que pueden extraer por turno corresponderá a 25 por obrero y de madera 20 por obrero.
+        </li>
+        <li class = "regla"> Doctores: Estos personajes cumplen con el rol de sanar a sus compañeros de ejército. Mientras más doctores posea un ejército, los puntos de salud de este se recuperarán más rápido tras un combate. La cantidad de salud que pueden recuperar por turno corresponderá a 100 por doctor en el ejército.
+        </li>
+        <p class="texto_bold"> Los distintos recursos disponibles que tu ejercito puede tener son : </p>
+        <li class = "regla">Monedas: Utilizadas para reclutar nuevos personajes al ejército dentro de un poblado y para conquistar poblados.
+        </li>
+        <li class = "regla">Madera: Material necesario para conquistar poblados.
+        </li>
+
+        <p class="texto_bold">Por ultimo los distintos territorios por donde puedes pasar son: </p>
+        <li class = "regla">Minas: Sirven para obtener monedas que serán utilizadas para reclutar más personajes. Existe la probabilidad de que la mina emita gases peligrosos, en cuyo caso se deteriora la vida del ejército.
+            
+        <li class = "regla">Poblados: Dentro de los poblados los ejércitos pueden reclutar más personas utilizando monedas (A menos que esté conquistado por un enemigo). Además se puede conquistar un poblado neutro utilizando 300 monedas y 150 kg de madera. En caso de encontrarse con un poblado enemigo, se puede atacar este para conquistarlo.
+        </li>
+        <li class = "regla">Bosques: Los bosques sirven para obtener madera. En los bosques existe el peligro de encontrarse con animales que pueden atacar el ejército que dañarán la salud del usuario.
+
+        <li class = "regla">Ruinas: Dentro de las ruinas se pueden encontrar rápidamente grandes cantidades de recursos y/o accesorios para incrementar los atributos del ejército. Sin embargo, estos lugares poseen una alta probabilidad de estar habitados por bandidos los cuales deben ser derrotados para conseguir la recompensa.
+        </li>
+        <li class = "regla">Planicie: Corresponde a un punto en el mapa donde no se puede realizar ninguna acción en especial. Las planicies solo sirven para desplazarse a través de estas.
+        </li>
+
+        <p class="texto_bold"> Cada ejercito empieza en una fortaleza, la cual es el punto de inicio de un jugador y es asignada aleatoriamente. Aquí será donde se devolverán los jugadores tras ser derrotados en un enfrentamiento para recuperar su salud. Dado que corresponde a un lugar para que el grupo pueda sanarse, no se podrá salir de la fortaleza si el grupo no ha superado la mitad de su barra de vida. Su poder de sanación es de 1500 puntos de salud total por turno. </p>
+
+        <h2> Reglas de enfrentamiento: </h2>
+        <p class="texto_bold">El resultado del enfrentamiento dependerá de la cantidad y tipo de guerreros que tenga el grupo. Es decir, dependerá del daño total, la defensa total y la salud total del ejército.</p>
+        
+        <p class="texto_bold">Para cada jugador que se enfrenta se calculará la siguiente fórmula de ataque: </p>
+
+        <li class = "regla">J1 = (Ataque_J1 - Defensa_J2) + (Salud_J1 * 0,5)</li>
+        <li class = "regla">J2 = (Ataque_J2 - Defensa_J1) + (Salud_J2 * 0,5)</li>
+
+        <p class="texto_bold">Luego el resultado (JX) se multiplicará por un número aleatorio entre 0,8 y 1,2 y se compararán ambos resultados donde saldrá victorioso el mayor.</p> 
+        <p class="texto_bold">La salud del perdedor (asumiremos que J2 pierde) corresponderá al máximo entre 0 y Salud_J2 - J1,  se morirán ⅓ (aproximado) de cada uno de sus tipos de unidades de ejército y, en caso de morir, se le descontarán 1/3 (aproximado) de sus poblados conquistados en caso de tener 3 hacia arriba, 1 en caso de tener entre 1 y 2, y 0 en otro caso. También se trasladará a su fortaleza para comenzar a recuperar su salud (estará obligado a pasar 1 turno ahí).</p> 
+        <p class="texto_bold">Finalmente, el ganador (asumimos que es J1) también sufrirá un daño a su salud total que corresponderá a 0,4 * J2, pudiendo quedar con una vida mínima de 1.</p> 
+
+        <h2> Variaciones en tipos de enfrentamientos  </h2>
+        <p class="texto_bold">Existen 2 tipos de enfrentamiento: contra bandidos y contra poblados conquistados por otro jugador.</p>
+        <li class = "regla">Para enfrentamientos contra bandidos, se creará un grupo de bandidos que posea para cada stat un número aleatorio entre 0,4 * "stat del jugador" y 1,2 * "stat del jugador", para luego determinar el resultado del enfrentamiento como se menciono anteriormente.</li>
+        <li class = "regla">Para el caso de que se invada un poblado conquistado (enfrentmiento con poblado conquistado) se calculará el poder del poblado como 0,6 * "poder del jugador al cual pertenece", para luego determinar al ganador según las reglas de enfrentamiento definidas arriba.</li>
+        
+      <h2>¿Cómo realizar una jugada?</h2>
+      <div class="como_jugar">
+        <p class="texto_bold">Actualmente, en el juego se puede realizar y enviar una jugada en partidas de 2 jugadores donde los lugares serán distribuidos aleatoriamente.</p>
+
+        <p class="texto_bold">Para realizar una jugada, se debe crear una partida o unirse a una existente y esperar a que se termine la uenta regresiva. Luego, en la vista del juego, uno comienza en una esquina del mapa. Desde aquí uno puede comprar unidades sin la necesidad de moverse previamente. Además, al seleccionar el botón "moverse" se mostraran las casillas disponibles para el movimiento en color azul y al seleccionar una se tornará roja para indicar que uno se moverá a esta. En caso de seleccionar un lugar, se habilitarán los botones correspondientes a las acciones que se pueden realizar en estos. Estas son:</p>
+        <li class = "regla">Minas: Interactuar</li>
+        <li class = "regla">Bosques: Interactuar</li>
+        <li class = "regla">Ruinas: Interactuar</li>
+        <li class = "regla">Poblados Neutros: Conquistar y Comprar</li>
+        <li class = "regla">Poblados Conquistados: Interactuar (Para invadir)</li>
+        <li class = "regla">Fortaleza: Comprar</li>
+
+        <p class="texto_bold">Otras consideraciones:</p>
+        <li class = "regla">En todo momento uno puede seleccionar el botón de curar y el próximo turno sus doctores procederan a curar al ejército en una cantidad que depernderá del número de doctores.</li>
+        <li class = "regla">Si se termina un turno en la fortaleza, el ejército se recuperará 1500 puntos de vida.</li>
+        <li class = "regla">Al utilizar la acción de "interactuar" existe la posibilidad de que no sea exitoso y se dañe al ejército.</li>
+
+        <li class = "regla">Al presionar "Terminar Turno" se mostrará un resumen del turno y al cerrar esta ventana se encontrará con las opciones de modificar turno, donde se podrá reiniciar dicho turno para volver a realizarlo, y mostrar resultado, donde se enviará la jugada el servidor y se mostrará el resultado de las acciones en la jugada.</li>
+
+        <li class = "regla">Al seleccionar "Mostrar resultado" se mostrará un mensaje con los resultados de la jugada realizada por el jugador. Después de cerrar esta ventana, habrán cambiado todos los stats y carácteristicas del mapa de acuerdo con los resultados y, luego que el otro jugador realice su jugada, se podrá realizar una nueva jugada desde ese punto.</li>
+
+        <li class = "regla">Es importante mencionar que se podrá salir de la pantalla del juego y la partida continuará como la dejaste.</li>
+
+        <p class="texto_bold">Luego de que concluyan los turnos, se mostrará al ganador con el número de poblados que posee y se podrá salir de la partida. Una vez que se sale de esta, no se podrá volver.</p>
+      </div>
+    </div>
+  <script src="../../views.js"></script>
+  </body>
+</html>

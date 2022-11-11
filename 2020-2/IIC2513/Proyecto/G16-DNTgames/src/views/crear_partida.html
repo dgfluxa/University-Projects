@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DNTgames | Crear Partida</title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/crear_partida.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-logo" href="../../index.html">DNTgames</a>
+      <ul class="navbar-items">
+        <li class="navbar-item">
+          <a href="../../index.html#nosotros" class="navbar-link navbar-link">Nosotros</a>
+        </li>
+        <li class="navbar-item" id="sesion1">
+        </li>
+        
+        <li class="navbar-item" id="sesion">
+        </li>
+        <li class="navbar-item" id="perfil">
+        </li>
+        <li class="navbar-item" id="sesion-cerrar">
+        </li>
+        <li class="navbar-item" id="registro">
+        </li>
+      </ul>
+    </nav>
+    <div class="wrapper">
+    <div class="columna-izq">
+      <a href="perfil.html"><img class="imgRedonda" src="../assets/imgs/fperfil.PNG"/></a>
+    <!--<h3 class="perfil">Username</h3> -->
+      <div>
+        <button id="API" class="boton_personal" >Comenzar</button>
+      </div>
+    </div>
+      <div class="planea">
+        <h2>Diseña el contexto de la partida...</h2>
+      </div>
+      <div id="columna-form">
+        <form>
+        <h4 class="mapas">Escoge un mapa:</h4>
+          <div id="mapas">
+            <ul class="mapas-items">
+              <li class="navbar-item">
+               <label class="checkeable">
+                  <input type="radio" checked="checked"  name="mapa" value="mapa1"/>
+                  <img src="../assets/imgs/maps/mapa_desierto.PNG" />
+               </label>
+              </li>
+              <li class="navbar-item">
+                <label class="checkeable">
+                  <input type="radio" name="mapa" value="mapa2"/>
+                  <img src="../assets/imgs/maps/mapa_campo.PNG" />
+                </label>
+              </li>
+              <li class="navbar-item">
+                <label class="checkeable">
+                  <input type="radio" name="mapa" value="mapa3"/>
+                  <img src="../assets/imgs/maps/mapa_nevado.PNG" />
+                </label>
+              </li>
+              <li class="navbar-item">
+                <label class="checkeable">
+                  <input type="radio" name="mapa" value="mapa4"/>
+                  <img src="../assets/imgs/maps/mapa_campo2.PNG" />
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div id="jugadores">
+            <h4 class="mapas">Cantidad de jugadores:</h4>
+            <input class="n-jugadores" type="number" max="2" min="2" value="2"/>
+          </div>
+          
+          <div id="tiempos">
+            <h4 class="mapas">Turnos de la partida:</h4>
+            <select class="turnos-partida" name="turnos">
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+              <option>25</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+            </select>
+          </div>
+      </div>
+    </div>
+  </form>
+ 
+  <script src="../assets/scripts/crear_partida.js"></script>
+  </body>
+</html>

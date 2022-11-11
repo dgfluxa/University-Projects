@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DNTgames | Jugar</title>
+    <link rel="stylesheet" type="text/css" href="../assets/styles/juego.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-logo" href="../../index.html">DNTgames</a>
+      <ul class="navbar-items">
+        <li class="navbar-item">
+          <a href="../../index.html#nosotros" class="navbar-link navbar-link">Nosotros</a>
+        </li>
+        <li class="navbar-item" id="sesion1">
+        </li>
+        
+        <li class="navbar-item" id="sesion">
+        </li>
+        <li class="navbar-item" id="perfil">
+        </li>
+        <li class="navbar-item" id="sesion-cerrar">
+        </li>
+        <li class="navbar-item" id="registro">
+        </li>
+      </ul>
+    </nav>
+    <div id="mensaje_resumen">
+      <h1>Resumen Jugada</h1>
+      <div id="cont_resumen"></div>
+      <div id="lista_resumen"></div>
+      <a onClick="cerrar_resumen()" id="boton_cerrar">Cerrar</a>
+    </div>
+    <div id="mensaje_resultado">
+      <h1>Resumen Resultados</h1>
+      <div id="cont_resultado"></div>
+      <div id="lista_resultado"></div>
+      <h1>Espera a que sea tu turno</h1>
+      <a href="juego.html" id="boton_recargar">Recargar</a>
+    </div>
+    <div id="mensaje_fin">
+      <h1>Fin de la partida</h1>
+      <div id="cont_fin"></div>
+      <div id="lista_fin"></div>
+      <a onClick="cerrar_fin()" id="boton_cerrar_fin">Cerrar y Salir</a> 
+      <p>El ganador se define por número de poblados conquistados y en caso de empate se recurre al dinero que posean al momento de terminar la partida.</p>
+    </div>
+    <div id="wrapper">
+      <div id="columna-izq">
+        <a href="perfil.html"><img class="imgRedonda" src="../assets/imgs/fperfil.PNG"/> </a>
+        <h3 class="perfil" ><span id="text_username"></span></h3>
+        <!--<p class="lugar_text">Lugar: <span class="lugar_user">1°</span></p> -->
+        <div id="recursos">
+          <div id="oro">
+            <img id="coin" src="../assets/imgs/coin.svg"/>
+            <p>$<span id='num_dinero'></span></p>
+          </div>
+          <div id="madera">
+            <img id="log" src="../assets/imgs/log.svg"/>
+            <p><span id='num_madera'></span>kg</p>
+          </div>
+        </div>
+        <div id="cont_vida">
+          <p>Vida: <span id='num_vida'></span></p>
+          <div id="barra_vida">
+            <div id="vida_actual"><span id='porc_vida'></span>%</div>
+          </div>
+        </div>
+        <div id="cont_pob">
+          <p>Poblados: <span id='num_poblados'></span></p>
+          <div id="barra_pob">
+            <div id="pob_actual"><span id='porc_poblados'></span>%</div>
+          </div>
+        </div>
+        <div class="ejercito">
+          <p>Tu ejército:</p>
+          <div class="unidad">
+            <img class="icono_unidad" id="guerrero" src="../assets/imgs/roman.svg"/>
+            <p class="nombre_un">Guerreros: <span id='num_guerreros'></span></p>
+          </div>
+          <div class="unidad">
+            <img class="icono_unidad" id="doctor" src="../assets/imgs/hospital.svg">
+            <p class="nombre_un">Doctores: <span id='num_doctores'></span></p>
+          </div>
+          <div class="unidad">
+            <img class="icono_unidad" id="obrero" src="../assets/imgs/pickaxe.svg"/>
+            <p class="nombre_un">Obreros: <span id='num_obreros'></span></p>
+          </div>
+        </div> 
+        <div class="stats">
+          <p>Stats:</p>
+          <div class="unidad">
+            <img class="icono_unidad" id="guerrero" src="../assets/imgs/swords.svg">
+            <p class="nombre_un">Ataque: <span id='num_ataque'></span></p>
+          </div>
+          <div class="unidad">
+            <img class="icono_unidad" id="doctor" src="../assets/imgs/corazon.svg"/>
+            <p class="nombre_un">Salud: <span id='num_salud'></span></p>
+          </div>
+          <div class="unidad">
+            <img class="icono_unidad" id="obrero" src="../assets/imgs/proteger.svg"/>
+            <p class="nombre_un">Defensa: <span id='num_defensa'></span></p>
+          </div>
+        </div>  
+      </div>
+      <div id="juego">
+        <a onClick="click_terminar()" id="boton_terminar">Terminar turno</a>
+        <a href="" onClick="click_modificar()" id="boton_modificar">Modificar Jugada</a>
+        <a onClick="click_simular()" id="boton_simular">Mostrar Resultado</a>
+      </div>
+      <div id="mapa">
+      </div>
+      <div id="columna_der">
+        <p>Turnos Restantes: <span id="turnos"></span></p>
+        <p>Acciones:</p>
+        <a onClick="click_interactuar(this)" class="boton_accion" id="interactuar_dis">Interactuar</a>
+        <a onClick="click_mover()" class="boton_accion" id="mover">Moverse</a>
+        <a onClick="click_curar(this)" class="boton_accion" id="curar">Curar</a>
+        <a onClick="click_conquistar(this)" class="boton_accion" id="conquistar_dis">Conquistar ($300 + 150kg)</a>
+        <p>Comprar:</p>
+        <a onClick="comprar_guerrero()" class="boton_comprar" id="comprar_guerrero_dis">Guerrero ($80)</a>
+        <a onClick="comprar_doctor()" class="boton_comprar" id="comprar_doctor_dis">Doctor ($100)</a>
+        <a onClick="comprar_obrero()" class="boton_comprar" id="comprar_obrero_dis">Obrero ($40)</a>
+        <!--<p>Ranking:</p>
+        <div class="ranking">
+          <p>1° <span id="j1">Jugador X</span></p>
+          <p>2° <span id="j2">Jugador X</span></p>
+          <p>3° <span id="j3">Jugador X</span></p>
+          <p>4° <span id="j4">Jugador X</span></p>
+        </div>-->
+      </div>
+    </div>
+    <!--<script src="<%= assetPath('../assets/scripts/juego.js') %>"></script>-->
+    <script src="../assets/scripts/juego.js"></script>
+    <script src="../../views.js"></script>
+  </body>
+</html>
