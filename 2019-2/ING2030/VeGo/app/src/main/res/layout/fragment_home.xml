@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment"
+    android:orientation="vertical">
+
+
+
+
+    <ScrollView
+        android:id="@+id/logros"
+        android:layout_width="match_parent"
+        android:layout_height="483dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginTop="15dp"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/welcome_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="64dp"
+                android:layout_below="@+id/logros"
+                android:gravity="center_horizontal"
+                android:text="¡Bienvenido!"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/logros_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/welcome_text"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:text="Mira tus Logros:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="26dp"/>
+
+            <TextView
+                android:id="@+id/racha_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/logros_text"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:text="Racha:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <HorizontalScrollView
+                android:id="@+id/racha"
+                android:layout_width="match_parent"
+                android:layout_height="174dp"
+                android:layout_below="@+id/racha_text"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                android:scrollbars="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/dias"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/calendario" />
+
+                        <TextView
+                            android:id="@+id/cant_dias_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/dias_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="días seguidos sin carne"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/sin_carne"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/sin_carne" />
+
+                        <TextView
+                            android:id="@+id/cant_sin_carne_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/sin_carne_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="días sin carnes rojas"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/veg"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/vegetariano" />
+
+                        <TextView
+                            android:id="@+id/cant_veg_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/veg_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="días Vegetarianos"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/vegan"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/vegano" />
+
+                        <TextView
+                            android:id="@+id/cant_vegan_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/dvegan_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="días Veganos"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/sin_pollo"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/sin_pollo" />
+
+                        <TextView
+                            android:id="@+id/cant_sin_pollo_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/sin_pollo_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="días sin carne de pollo"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/sin_pescado"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/sin_pescado" />
+
+                        <TextView
+                            android:id="@+id/cant_sin_pescado_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/sin_pescado_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="días sin carne de pescado"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/animales_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/racha"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:text="Animales Salvados:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <HorizontalScrollView
+                android:id="@+id/animals"
+                android:layout_width="match_parent"
+                android:layout_height="174dp"
+                android:layout_below="@+id/animales_text"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                android:scrollbars="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/vaca"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/vaca" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_vaca"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_vaca_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/vaca_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="vacas"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/gallina"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/gallina" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_gallina"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_gallina_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/gallina_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="gallinas"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/pez"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/pescado" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_pez"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_pez_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/pez_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="peces"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/cerdo"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/cerdo" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_cerdo"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_cerdo_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/cerdo_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="cerdos"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/oveja"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/oveja" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_oveja"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_oveja_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/oveja_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="ovejas"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/agua_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/animals"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:text="Agua Ahorrada:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <HorizontalScrollView
+                android:id="@+id/agua"
+                android:layout_width="match_parent"
+                android:layout_height="174dp"
+                android:layout_below="@+id/agua_text"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                android:scrollbars="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/litros"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/water" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_litros"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_litros_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/litros_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="litros de agua"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/botellas"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/bottle" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_botellas"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_botellas_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/botellas_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="botellas de agua"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ducha"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/shower" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_ducha"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_ducha_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/ducha_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="horas en la ducha"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/piscina"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/pool" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_piscina"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_piscina_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/piscina_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="piscinas olímpicas"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/estadio"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/stadium" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_estadio"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_estadio_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="X.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/estadio_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Estadios Nacionales"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/gas_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/agua"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:text="Gases no emitidos:"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <HorizontalScrollView
+                android:id="@+id/gas"
+                android:layout_width="match_parent"
+                android:layout_height="174dp"
+                android:layout_below="@+id/gas_text"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                android:scrollbars="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/kilos"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/gas" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_kilos"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_kilos_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/kilos_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="kilos de gases de E.I."
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/kms"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/car" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_kms"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_kms_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/kms_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="kilometros en auto"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/auto"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/traffic" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_auto"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_auto_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/auto_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="autos en un día"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/avion"
+                            android:layout_width="90dp"
+                            android:layout_height="75dp"
+                            android:src="@drawable/airplane" />
+
+                        <ProgressBar
+                            android:id="@+id/prog_avion"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/cant_avion_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="XX.XX"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/avion_text"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="kilometros en avion"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

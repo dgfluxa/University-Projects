@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">VeGo</string>
+    <string name="boton_classic">VeGo Classic</string>
+    <string name="boton_health">VeGo Health</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
